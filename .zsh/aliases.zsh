@@ -9,3 +9,6 @@ alias grep='grep --color=auto'
 # enable alias in sudo
 alias sudo='sudo '
 
+# Formatted CSV viewer
+alias csv='column -s, -t'
+
