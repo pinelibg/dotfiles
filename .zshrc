@@ -41,6 +41,7 @@ if [ ${USE_ZPLUG} = 1 ]; then
 	#	rename-to:fzf, \
 	#	from:gh-r
 	type fzy > /dev/null || echo "fzy is not installed"
+	ENHANCD_DISABLE_HOME=1
 	zplug "b4b4r07/enhancd", use:init.sh
 
 	# theme
