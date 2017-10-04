@@ -36,11 +36,10 @@ if [ ${USE_ZPLUG} = 1 ]; then
 	zstyle :omz:plugins:ssh-agent lifetime 4h
 	zplug "plugins/ssh-agent", from:oh-my-zsh
 
-	#zplug "junegunn/fzf-bin", \
-	#	as:command, \
-	#	rename-to:fzf, \
-	#	from:gh-r
-	type fzy > /dev/null || echo "fzy is not installed"
+	zplug "junegunn/fzf-bin", \
+		as:command, \
+		rename-to:fzf, \
+		from:gh-r
 	ENHANCD_DISABLE_HOME=1
 	zplug "b4b4r07/enhancd", use:init.sh
 
