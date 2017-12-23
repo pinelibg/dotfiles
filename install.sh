@@ -5,7 +5,7 @@ SCRIPT_DIR=$(cd $(dirname ${0}) && pwd)
 BACKUP_DIR=${HOME}/dotfiles_backup
 
 DOTFILES=(
-.myenv .vimrc .zshrc .zsh
+.vimrc .zshrc .zshenv .zsh
 )
 
 for f in ${DOTFILES[@]}
