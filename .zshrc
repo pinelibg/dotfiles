@@ -7,6 +7,7 @@ elif [ ! -d ~/.zplug ]; then
 	echo "zplug is not installed"
 else
 	export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
+	export ZPLUG_BIN=~/.zplug/bin
 	source ~/.zplug/init.zsh
 
 	if ! zplug check --verbose; then
