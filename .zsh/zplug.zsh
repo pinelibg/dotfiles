@@ -29,3 +29,6 @@ LIME_SHOW_HOSTNAME=1
 LIME_DIR_DISPLAY_COMPONENTS=3
 zplug "yous/lime"
 
+DIRCOLORS_SOLARIZED_ZSH_THEME="256dark"
+zplug "pinelibg/dircolors-solarized-zsh"
+

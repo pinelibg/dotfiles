@@ -1,9 +1,19 @@
 autoload -Uz compinit
 compinit -u
 
+# Set LS_COLORS variable
+if [[ -z "${LS_COLORS}" ]]; then
+	if type dircolors &>/dev/null; then
+		eval "$(dircolors)"
+	elif type gdircolors &>/dev/null; then
+		eval "$(gdircolors)"
+	fi
+fi
+
 zstyle ':completion:*:default' menu select=1
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+if [[ -n "${LS_COLORS}" ]]; then
+	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+fi
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
