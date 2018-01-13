@@ -1,5 +1,8 @@
-autoload -Uz compinit
-compinit -u
+# compinit is automatically loaded in zplug
+if ! (type compinit &>/dev/null) ; then
+	autoload -Uz compinit
+	compinit -u
+fi
 
 # Set LS_COLORS variable
 if [[ -z "${LS_COLORS}" ]]; then
