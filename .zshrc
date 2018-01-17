@@ -10,13 +10,7 @@ else
 	export ZPLUG_BIN=~/.zplug/bin
 	source ~/.zplug/init.zsh
 
-	if ! zplug check --verbose; then
-		printf "Install? [y/N]: "
-		if read -q; then
-			echo; zplug install
-		fi
-	fi
-
+	zplug check || zplug install
 	zplug load
 fi
 
