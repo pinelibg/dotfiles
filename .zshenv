@@ -15,3 +15,5 @@ export SAVEHIST=10000
 
 export EDITOR=vim
 
+[[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
+
