@@ -1,7 +1,6 @@
 # zsh config
 
 umask 022
-limit coredumpsize 0
 
 # zplug : https://github.com/zplug/zplug
 if [ -f ~/.no_zplug ]; then
