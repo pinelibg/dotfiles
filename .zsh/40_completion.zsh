@@ -7,9 +7,9 @@ fi
 # Set LS_COLORS variable
 if [[ -z "${LS_COLORS}" ]]; then
 	if type dircolors &>/dev/null; then
-		eval "$(dircolors)"
+		eval "$(dircolors -b)"
 	elif type gdircolors &>/dev/null; then
-		eval "$(gdircolors)"
+		eval "$(gdircolors -b)"
 	fi
 fi
 
