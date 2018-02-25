@@ -9,5 +9,9 @@ else
 	bindkey '^N' history-beginning-search-forward
 fi
 
+if type zplug &>/dev/null && zplug check "zsh-users/zsh-autosuggestions"; then
+	bindkey '^ ' autosuggest-accept
+fi
+
 bindkey "^D" menu-select
 
