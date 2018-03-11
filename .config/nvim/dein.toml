@@ -15,7 +15,7 @@ hook_add = '''
 [[plugins]]
 repo = 'joshdick/onedark.vim'
 hook_add = '''
-    colorscheme onedark
+    au MyAutoCmd VimEnter * nested colorscheme onedark
 '''
 
 [[plugins]]

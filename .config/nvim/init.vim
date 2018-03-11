@@ -82,6 +82,10 @@ inoremap <silent> っｊ <ESC>
 inoremap <silent> っj <ESC>
 inoremap <silent> ｊｊ <ESC>
 
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
 let s:cache_dir = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let s:dein_dir = s:cache_dir . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
