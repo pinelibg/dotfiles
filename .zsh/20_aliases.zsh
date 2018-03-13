@@ -1,4 +1,10 @@
-alias ls='ls --color=auto'
+if ls --color=auto &>/dev/null; then
+	alias ls='ls --color=auto'
+elif gls --color=auto &>/dev/null; then
+	alias ls='gls --color=auto'
+else
+	alias ls='ls -G'
+fi
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
