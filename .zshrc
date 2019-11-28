@@ -2,18 +2,17 @@
 
 umask 022
 
-# zplug : https://github.com/zplug/zplug
-if [ -f ~/.no_zplug ]; then
+# zplugin : https://github.com/zdharma/zplugin
+if [ -f ~/.no_zplugin ]; then
 	:
-elif [ ! -d ~/.zplug ]; then
-	echo "zplug is not installed"
+elif [ ! -d ~/.zplugin ]; then
+	echo "zplugin(https://github.com/zdharma/zplugin) is not installed"
 else
-	export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
-	export ZPLUG_BIN=~/.zplug/bin
-	source ~/.zplug/init.zsh
+	source ~/.zplugin/bin/zplugin.zsh
+	autoload -Uz _zplugin
+	(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-	zplug check || zplug install
-	zplug load
+	source ~/.zsh/zplugin.zsh
 fi
 
 ()

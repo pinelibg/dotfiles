@@ -15,5 +15,8 @@ export SAVEHIST=10000
 
 export EDITOR=vim
 
+# Skip the not really helping Ubuntu global compinit
+skip_global_compinit=1
+
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
 

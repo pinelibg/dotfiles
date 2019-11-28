@@ -36,15 +36,7 @@ prompt_setup() {
 	SPROMPT="is \"%r\" correct? [(n)o,(y)es,(a)bort,(e)dit]: "
 }
 
-# Use this theme only theme is not already loaded by zplug
-if ! (type zplug &>/dev/null && zplug check "yous/lime") ; then
-	prompt_setup
-fi
+prompt_setup
 
 unfunction prompt_setup
-
-# Set up the prompt
-# autoload -Uz promptinit
-# promptinit
-# prompt adam1
 
