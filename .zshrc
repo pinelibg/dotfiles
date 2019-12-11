@@ -2,12 +2,16 @@
 
 umask 022
 
-# zplugin : https://github.com/zdharma/zplugin
-if [ -f ~/.no_zplugin ]; then
+if [[ -f ~/.no_zplugin ]]; then
 	:
-elif [ ! -d ~/.zplugin ]; then
-	echo "zplugin(https://github.com/zdharma/zplugin) is not installed"
 else
+	# zplugin : https://github.com/zdharma/zplugin
+
+	# Install zplugin if not installed
+	if [[ ! -d ~/.zplugin ]]; then
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+	fi
+
 	source ~/.zplugin/bin/zplugin.zsh
 	autoload -Uz _zplugin
 	(( ${+_comps} )) && _comps[zplugin]=_zplugin
