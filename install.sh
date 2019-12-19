@@ -5,7 +5,7 @@ CONF_DIR=${SCRIPT_ROOT}/conf
 BACKUP_DIR=${HOME}/dotfiles_backup
 
 DOTFILES=(
-.vimrc .config/nvim .bash_profile .bashrc .profile .zshrc .zshenv .zsh
+.vimrc .config/nvim .bash_profile .bashrc .profile .zshrc .zshenv .zsh .gitignore_global
 )
 
 mkdir -p ${HOME}/.config
@@ -23,3 +23,11 @@ do
 	ln -vnsf ${CONF_DIR}/$f ${HOME}/$f
 done
 
+echo "Setting .gitignore_global"
+if type git &>/dev/null; then
+	git config --global core.excludesfile ~/.gitignore_global
+else
+	echo "Skipped. Git is not installed"
+fi
+
+echo "Installation finished"
