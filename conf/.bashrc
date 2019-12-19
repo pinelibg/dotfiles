@@ -1,0 +1,79 @@
+# .bashrc
+
+# Source global bashrc
+if [[ -f /etc/bashrc ]]; then
+    . /etc/bashrc
+fi
+
+# If not running interactively, don't do anything
+[[ "$-" != *i* ]] && return
+
+# Workaround for vscode remote development
+[[ ! -t 1 ]] && return
+
+# Shell settings
+shopt -s checkwinsize
+shopt -s histappend
+
+HISTCONTROL=ignoredups:ignorespace
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# Disable ctrl-s and ctrl-q keybinds
+if [[ “$SSH_TTY” != “” ]]; then
+    stty stop undef
+    stty start undef
+fi
+
+function set_prompt() {
+    if [[ "$TERM" = *"256color" ]]; then
+        local RED='\[\e[38;5;167m\]'
+        local GREEN='\[\e[38;5;143m\]'
+        local CYAN='\[\e[38;5;109m\]'
+    else
+        local RED='\[\e[31m\]'
+        local GREEN='\[\e[32m\]'
+        local CYAN='\[\e[36m\]'
+    fi
+    local RESET='\[\e[0m\]'
+
+    PS1="${GREEN}\u${RESET}@${CYAN}\h${RESET}:${RED}\w${RESET}\\$ "
+
+    local window_title="${USER}@${HOSTNAME}"
+    local tab_title="${USER}"
+    case "$TERM" in
+    screen*)
+        # Set window title
+        printf '\e]0;'
+        echo -n "${window_title}"
+        printf '\a'
+
+        # Set window name
+        printf '\ek'
+        echo -n "${tab_title}"
+        printf '\e\\'
+        ;;
+    cygwin|putty*|rxvt*|xterm*)
+        # Set window title
+        printf '\e]2;'
+        echo -n "${window_title}"
+        printf '\a'
+
+        # Set tab name
+        printf '\e]1;'
+        echo -n "${tab_title}"
+        printf '\a'
+        ;;
+    *)
+        ;;
+    esac
+}
+
+set_prompt
+unset -f set_prompt
+
+if [[ -f ~/.bashrc.local ]]; then
+    . ~/.bashrc.local
+fi
+
+:

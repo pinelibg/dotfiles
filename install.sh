@@ -5,7 +5,7 @@ CONF_DIR=${SCRIPT_ROOT}/conf
 BACKUP_DIR=${HOME}/dotfiles_backup
 
 DOTFILES=(
-.vimrc .config/nvim .zshrc .zshenv .zsh
+.vimrc .config/nvim .bash_profile .bashrc .profile .zshrc .zshenv .zsh
 )
 
 mkdir -p ${HOME}/.config
