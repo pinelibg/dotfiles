@@ -1,18 +1,22 @@
-if ls --color=auto &>/dev/null; then
-	alias ls='ls --color=auto'
-elif gls --color=auto &>/dev/null; then
-	alias ls='gls --color=auto'
-else
-	alias ls='ls -G'
+if gls --color=auto &>/dev/null; then
+	alias ls='gls --color=auto -F'
+elif ls --color=auto &>/dev/null; then
+	alias ls='ls --color=auto -F'
+else # macos's ls
+	alias ls='ls -GF'
 fi
-alias ll='ls -l'
+alias ll='ls -lh'
 alias la='ls -a'
-alias lla='ls -la'
+alias lla='ls -lha'
+
 alias du='du -h'
 alias df='df -h'
-alias grep='grep --color=auto'
 
-# enable alias in sudo
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Enable completion in sudo
 alias sudo='sudo '
 
 # Formatted CSV viewer
