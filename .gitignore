@@ -1,2 +1,2 @@
-# Nothing to ignore
-
+# Ignore machine-specific settings
+*.local
