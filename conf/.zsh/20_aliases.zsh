@@ -22,3 +22,6 @@ alias sudo='sudo '
 # Formatted CSV viewer
 alias csv='column -s, -t'
 
+# Options passed to less
+export LESS='-iMR -# 4 -x4'
+
