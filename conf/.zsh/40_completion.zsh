@@ -1,5 +1,5 @@
 # compinit is automatically loaded by plugin loader
-if ! (type zplugin &>/dev/null || type compinit &>/dev/null) ; then
+if ! (type zinit &>/dev/null || type compinit &>/dev/null) ; then
 	autoload -Uz compinit
 	compinit -u
 fi

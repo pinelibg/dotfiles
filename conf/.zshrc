@@ -2,21 +2,21 @@
 
 umask 022
 
-if [[ -f ~/.no_zplugin ]]; then
+if [[ -f ~/.no_zinit ]]; then
 	:
 else
-	# zplugin : https://github.com/zdharma/zplugin
+	# zinit : https://github.com/zdharma/zinit
 
-	# Install zplugin if not installed
-	if [[ ! -d ~/.zplugin ]]; then
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+	# Install zinit if not installed
+	if [[ ! -d ~/.zinit ]]; then
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 	fi
 
-	source ~/.zplugin/bin/zplugin.zsh
-	autoload -Uz _zplugin
-	(( ${+_comps} )) && _comps[zplugin]=_zplugin
+	source ~/.zinit/bin/zinit.zsh
+	autoload -Uz _zinit
+	(( ${+_comps} )) && _comps[zinit]=_zinit
 
-	source ~/.zsh/zplugin.zsh
+	source ~/.zsh/zinit.zsh
 fi
 
 ()
