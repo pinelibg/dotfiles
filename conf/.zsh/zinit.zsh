@@ -30,6 +30,10 @@ zinit light trapd00r/LS_COLORS
 DIRCOLORS_SOLARIZED_ZSH_THEME="256dark"
 zinit light pinelibg/dircolors-solarized-zsh
 
+zinit ice wait"2" lucid from"gh-r" as"program" mv"exa* -> exa" atload'alias ls=exa'; zinit light ogham/exa
+zinit ice as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"; zinit light sharkdp/fd
+zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"; zinit light sharkdp/bat
+
 # theme
 LIME_SHOW_HOSTNAME=1
 LIME_DIR_DISPLAY_COMPONENTS=3
