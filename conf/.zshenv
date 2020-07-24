@@ -2,6 +2,7 @@ typeset -U path
 path=( \
 	/usr/local/bin(N-/) \
 	~/bin(N-/) \
+	~/.local/bin(N-/) \
 	"$path[@]" \
 )
 
