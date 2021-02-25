@@ -11,4 +11,5 @@ setopt nonomatch
 setopt hist_verify
 setopt hist_reduce_blanks
 setopt ignoreeof # Not logout by Ctl+D
+setopt noflowcontrol # Disable flow control (Ctrl+S, Ctrl+Q)
 
