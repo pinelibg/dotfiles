@@ -1,3 +1,5 @@
+zinit light zinit-zsh/z-a-bin-gem-node
+
 zinit light zsh-users/zsh-completions
 
 zinit ice wait'!' lucid atinit'zpcompinit; zpcdreplay'; zinit light zdharma/fast-syntax-highlighting
@@ -17,9 +19,9 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent lifetime 4h
 zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
 
-zinit ice from"gh-r" as"program"; zinit light junegunn/fzf-bin
+zinit ice wait lucid from"gh-r" sbin"fzf"; zinit light junegunn/fzf-bin
 
-zinit ice from"gh-r" as"program"; zinit light peco/peco
+zinit ice wait lucid from"gh-r" sbin"**/peco"; zinit light peco/peco
 
 ENHANCD_DISABLE_HOME=1
 zinit ice pick'init.sh' wait lucid nocompletions; zinit light b4b4r07/enhancd
@@ -30,9 +32,9 @@ zinit light trapd00r/LS_COLORS
 DIRCOLORS_SOLARIZED_ZSH_THEME="256dark"
 zinit light pinelibg/dircolors-solarized-zsh
 
-zinit ice wait"2" lucid from"gh-r" as"program" pick"bin/exa" atload"alias ls=exa; alias ll='ls -lhg --time-style iso'; alias lt='exa -Tlhg -L2'"; zinit light ogham/exa
-zinit ice as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"; zinit light sharkdp/fd
-zinit ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"; zinit light sharkdp/bat
+zinit ice wait lucid from"gh-r" sbin"bin/exa" atload"alias ls=exa; alias ll='ls -lhg --time-style iso'; alias lt='exa -Tlhg -L2'"; zinit light ogham/exa
+zinit ice wait lucid from"gh-r" sbin"**/fd"; zinit light sharkdp/fd
+zinit ice wait lucid from"gh-r" sbin"**/bat"; zinit light sharkdp/bat
 
 # theme
 LIME_SHOW_HOSTNAME=1
