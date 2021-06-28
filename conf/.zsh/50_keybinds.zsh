@@ -11,3 +11,7 @@ bindkey '^Q' push-line-or-edit
 bindkey '^[Q' push-line-or-edit
 bindkey '^[q' push-line-or-edit
 
+# Ctrl + left/right arrow keys to move between words
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
