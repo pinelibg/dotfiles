@@ -15,3 +15,7 @@ bindkey '^[q' push-line-or-edit
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
+# Ctrl + backspace/delete to delete word backword/forward
+bindkey '^H' backward-kill-word
+bindkey '5~' kill-word
+
