@@ -23,6 +23,11 @@ if (has("termguicolors"))
   set termguicolors
 endif
 "set ambiwidth=double
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 " Key behavior
 set noexpandtab
@@ -40,6 +45,7 @@ set incsearch
 set wildmenu
 set history=5000
 set nobackup
+set updatetime=300
 
 " Highlight full width spaces
 highlight FullWidthSpace ctermbg=LightCyan
