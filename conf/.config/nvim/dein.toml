@@ -14,8 +14,8 @@ hook_add = '''
 
 [[plugins]]
 repo = 'joshdick/onedark.vim'
-hook_add = '''
-    au MyAutoCmd VimEnter * nested colorscheme onedark
+hook_post_source = '''
+    colorscheme onedark
 '''
 
 [[plugins]]
@@ -37,7 +37,7 @@ repo = 'sheerun/vim-polyglot'
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
-hook_add = '''
+hook_source = '''
     let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
     " Jump to anywhere you want with minimal keystrokes
@@ -89,7 +89,7 @@ repo = 'airblade/vim-gitgutter'
 repo = "neoclide/coc.nvim"
 merge = 0
 rev = "release"
-hook_add = '''
+hook_source = '''
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.

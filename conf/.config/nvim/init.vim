@@ -116,6 +116,10 @@ if has('neovim') || v:version >= 800
   if has('vim_starting') && dein#check_install()
     call dein#install()
   endif
+
+  call dein#call_hook('source')
+  autocmd VimEnter * call dein#call_hook('post_source')
+
 endif
 
 filetype plugin indent on
