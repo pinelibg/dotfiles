@@ -17,7 +17,7 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 # ssh-agent
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent lifetime 4h
-zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
+zinit ice silent; zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
 
 zinit ice wait lucid from"gh-r" sbin"fzf"; zinit light junegunn/fzf-bin
 
@@ -37,7 +37,7 @@ zinit ice wait lucid from"gh-r" sbin"**/fd"; zinit light sharkdp/fd
 zinit ice wait lucid from"gh-r" sbin"**/bat"; zinit light sharkdp/bat
 
 # theme
-LIME_SHOW_HOSTNAME=1
-LIME_DIR_DISPLAY_COMPONENTS=3
-zinit ice wait'!' lucid nocd atload'prompt_lime_precmd; zle reset-prompt'; zinit light yous/lime
+[[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit light trystan2k/zsh-tab-title
 
