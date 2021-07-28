@@ -17,12 +17,12 @@ zinit ice wait lucid atload'
   bindkey "^N" history-substring-search-down'
 zinit light zsh-users/zsh-history-substring-search
 
-zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit ice wait lucid; zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # ssh-agent
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zstyle :omz:plugins:ssh-agent lifetime 4h
-zinit ice silent; zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
+zinit ice wait lucid silent; zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
 
 zinit ice wait lucid from"gh-r" sbin"fzf"; zinit light junegunn/fzf-bin
 
@@ -44,7 +44,7 @@ zinit ice wait lucid from"gh-r" sbin"**/bat"; zinit light sharkdp/bat
 # theme
 [[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit light trystan2k/zsh-tab-title
+zinit ice wait lucid; zinit light trystan2k/zsh-tab-title
 
 [[ -f ~/.zsh/zinit.zsh.local ]] && source ~/.zsh/zinit.zsh.local
 
