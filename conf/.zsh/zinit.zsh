@@ -46,3 +46,5 @@ zinit ice wait lucid from"gh-r" sbin"**/bat"; zinit light sharkdp/bat
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light trystan2k/zsh-tab-title
 
+[[ -f ~/.zsh/zinit.zsh.local ]] && source ~/.zsh/zinit.zsh.local
+
