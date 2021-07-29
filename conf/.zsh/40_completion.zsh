@@ -23,3 +23,6 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:
 zstyle ':completion:*' menu select=long
 zstyle ':completion:*' use-cache true
 
+# Ignore completion function from command correction
+CORRECT_IGNORE='_*'
+
