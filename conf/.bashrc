@@ -1,4 +1,5 @@
 # .bashrc
+# shellcheck shell=bash
 
 # Source global bashrc
 if [[ -f /etc/bashrc ]]; then
@@ -20,7 +21,7 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # Disable ctrl-s and ctrl-q keybinds
-if [[ “$SSH_TTY” != “” ]]; then
+if [[ "$SSH_TTY" != "" ]]; then
     stty stop undef
     stty start undef
 fi

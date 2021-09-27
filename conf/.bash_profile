@@ -1,4 +1,5 @@
 # .bash_profile
+# shellcheck shell=bash
 
 # source .profile
 if [[ -f ~/.profile ]]; then
