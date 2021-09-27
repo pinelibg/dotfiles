@@ -5,9 +5,9 @@ zinit light-mode for \
     zinit-zsh/z-a-patch-dl \
     zinit-zsh/z-a-bin-gem-node
 
-zinit light zsh-users/zsh-completions
 
-zinit ice wait'!' lucid atinit'zpcompinit; zpcdreplay'; zinit light zdharma/fast-syntax-highlighting
+zinit ice wait lucid blockf; zinit light zsh-users/zsh-completions
+zinit ice wait'!0z' lucid atinit"zicompinit; zicdreplay"; zinit light zdharma/fast-syntax-highlighting
 
 zinit ice wait lucid atload'_zsh_autosuggest_start; bindkey "^ " autosuggest-accept'
 zinit light zsh-users/zsh-autosuggestions
