@@ -5,11 +5,11 @@ umask 022
 if [[ -f ~/.no_zinit ]]; then
 	:
 else
-	# zinit : https://github.com/zdharma/zinit
+	# zinit : https://github.com/zdharma-continuum/zinit
 
 	# Install zinit if not installed
 	if [[ ! -d ~/.zinit ]]; then
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/master/doc/install.sh)"
 	fi
 
 	source ~/.zinit/bin/zinit.zsh
