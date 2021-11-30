@@ -6,13 +6,16 @@ if [[ -f ~/.no_zinit ]]; then
 	:
 else
 	# zinit : https://github.com/zdharma-continuum/zinit
+	ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 	# Install zinit if not installed
-	if [[ ! -d ~/.zinit ]]; then
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/master/doc/install.sh)"
+	if [[ ! -d ${ZINIT_HOME} ]]; then
+		mkdir -p "$(dirname $ZINIT_HOME)"
+		git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 	fi
 
-	source ~/.zinit/bin/zinit.zsh
+	source "${ZINIT_HOME}/zinit.zsh"
+
 	autoload -Uz _zinit
 	(( ${+_comps} )) && _comps[zinit]=_zinit
 
