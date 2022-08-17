@@ -17,7 +17,7 @@ jobs:
         uses: reviewdog/action-shellcheck@v1
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
+          reporter: github-check
           pattern: |
             *.sh
             *.zsh
@@ -34,7 +34,7 @@ jobs:
         uses: reviewdog/action-vint@v1
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
+          reporter: github-check
   lint-actionlint:
     runs-on: ubuntu-latest
     steps:
@@ -43,7 +43,7 @@ jobs:
         uses: reviewdog/action-actionlint@v1
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
+          reporter: github-check
   lint-tomlcheck:
     runs-on: ubuntu-latest
     steps:
