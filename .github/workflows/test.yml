@@ -1,0 +1,53 @@
+---
+name: Test install
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-zsh:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install zsh (Linux)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends zsh
+        if: runner.os == 'Linux'
+      - name: Run install.sh
+        run: ./install.sh
+      - name: Test zsh
+        run: zsh -i -c "exit 0"
+  test-neovim:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install packages (Linux)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends neovim
+        if: runner.os == 'Linux'
+      - name: Install packages (macOS)
+        run: |
+          brew upgrade
+          brew install neovim
+        if: runner.os == 'macOS'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Run install.sh
+        run: ./install.sh
+      - name: Test neovim
+        run: nvim -c q
