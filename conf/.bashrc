@@ -3,6 +3,7 @@
 
 # Source global bashrc
 if [[ -f /etc/bashrc ]]; then
+    # shellcheck source=/dev/null
     . /etc/bashrc
 fi
 
@@ -52,7 +53,7 @@ function set_prompt() {
         # Set window name
         printf '\ek'
         echo -n "${tab_title}"
-        printf '\e\\'
+        printf '\e'\\
         ;;
     cygwin|putty*|rxvt*|xterm*)
         # Set window title

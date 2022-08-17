@@ -18,14 +18,12 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
+          shellcheck_flags: --external-sources --exclude=SC1090
           pattern: |
             *.sh
-            *.zsh
             .profile
             .bashrc
             .bash_profile
-            .zshrc
-            .zshenv
   lint-vint:
     runs-on: ubuntu-latest
     steps:

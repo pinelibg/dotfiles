@@ -65,22 +65,10 @@ depends = ['vim-textobj-user']
 
 [[plugins]]
 repo = 'landock/vim-expand-region'
-hook_add = """
-    let g:expand_region_text_objects = {
-        \ 'iw'  :0,
-        \ 'iW'  :0,
-        \ 'i"'  :0,
-        \ 'i''' :0,
-        \ 'i]'  :1,
-        \ 'ib'  :1,
-        \ 'iB'  :1,
-        \ 'il'  :0,
-        \ 'ip'  :0,
-        \ 'ie'  :0,
-        \ }
+hook_source = '''
     vmap v <Plug>(expand_region_expand)
     vmap <C-v> <Plug>(expand_region_shrink)
-"""
+'''
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
