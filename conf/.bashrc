@@ -3,6 +3,7 @@
 
 # Source global bashrc
 if [[ -f /etc/bashrc ]]; then
+    # shellcheck source=/dev/null
     . /etc/bashrc
 fi
 
