@@ -1,0 +1,54 @@
+---
+name: Lint files
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint-shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run shellcheck
+        uses: reviewdog/action-shellcheck@v1
+        with:
+          pattern: |
+            *.sh
+            *.zsh
+            .profile
+            .bashrc
+            .bash_profile
+            .zshrc
+            .zshenv
+  lint-vint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install vint
+        run: pip install vim-vint
+      - name: Run vint
+        run: vint -Vsct --enable-neovim ./conf/.config/nvim/init.vim
+  lint-actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run actionlint
+        uses: reviewdog/action-actionlint@v1
+  lint-tomlcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install tomlcheck
+        run: |
+          curl -L https://github.com/vmchale/tomlcheck/releases/download/0.1.0.38/tomlcheck-x86_64-unkown-linux-gnu -o /usr/local/bin/tomlcheck
+          chmod 755 /usr/local/bin/tomlcheck
+      - name: Run tomlcheck
+        run: find . -type f -name '*.toml' -printf '%p\n' | xargs -i -t -n 1 sh -c 'tomlcheck -f {} || echo "::error file={}::Toml lint check failed"'
