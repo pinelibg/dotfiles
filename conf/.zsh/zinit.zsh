@@ -39,7 +39,7 @@ zinit light pinelibg/dircolors-solarized-zsh
 
 zinit ice wait lucid from"gh-r" sbin"bin/exa" atload"alias exa='exa -hg --icons --git --time-style iso'; alias ls=exa; alias lt='ls -T -L2'; alias lta='lt -a -I \"node_modules|.git|.cache\"'"; zinit light ogham/exa
 zinit ice wait lucid from"gh-r" sbin"**/fd"; zinit light sharkdp/fd
-zinit ice wait lucid from"gh-r" sbin"**/bat"; zinit light sharkdp/bat
+zinit ice wait lucid from"gh-r" sbin"**/bat" atload"alias cat='bat -pp'"; zinit light sharkdp/bat
 
 zinit from"gh-r" as"program" mv"direnv* -> direnv" \
     atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
