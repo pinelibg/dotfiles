@@ -37,7 +37,7 @@ zinit light trapd00r/LS_COLORS
 DIRCOLORS_SOLARIZED_ZSH_THEME="256dark"
 zinit light pinelibg/dircolors-solarized-zsh
 
-zinit ice wait lucid from"gh-r" sbin"bin/exa" atload"alias ls=exa; alias ll='ls -lhg --time-style iso'; alias lt='exa -Tlhg -L2'"; zinit light ogham/exa
+zinit ice wait lucid from"gh-r" sbin"bin/exa" atload"alias exa='exa -hg --icons --git --time-style iso'; alias ls=exa; alias lt='ls -T -L2'; alias lta='lt -a -I \"node_modules|.git|.cache\"'"; zinit light ogham/exa
 zinit ice wait lucid from"gh-r" sbin"**/fd"; zinit light sharkdp/fd
 zinit ice wait lucid from"gh-r" sbin"**/bat"; zinit light sharkdp/bat
 
