@@ -42,11 +42,6 @@ zinit ice wait lucid from"gh-r" sbin"**/fd"; zinit light sharkdp/fd
 zinit ice wait lucid from"gh-r" sbin"**/bat" atload"alias cat='bat -pp'"; zinit light sharkdp/bat
 zinit ice wait lucid as"command" from"gh-r" pick"**/delta" atload"git config --global core.pager delta; git config --global delta.line-numbers true; git config --global delta.side-by-side true"; zinit light dandavison/delta
 
-zinit from"gh-r" as"program" mv"direnv* -> direnv" \
-    atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-    pick"direnv" src="zhook.zsh" for \
-        direnv/direnv
-
 # theme
 [[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
 zinit ice depth=1; zinit light romkatv/powerlevel10k
