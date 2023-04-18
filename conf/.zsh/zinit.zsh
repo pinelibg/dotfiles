@@ -20,8 +20,8 @@ zinit light zsh-users/zsh-history-substring-search
 zinit ice wait lucid; zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # ssh-agent
+zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent lifetime 4h
 zinit ice wait lucid silent; zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
 
 zinit ice wait lucid from"gh-r" sbin"fzf"; zinit light junegunn/fzf-bin
