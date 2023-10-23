@@ -12,15 +12,15 @@ mkdir -p "${HOME}/.config"
 
 for f in "${DOTFILES[@]}"
 do
-	echo "Linking $f ..."
+	echo "Linking ${f} ..."
 
-	if [[ -f ${HOME}/$f ]] && [[ ! -L ${HOME}/$f ]]; then
-		echo "$f already exists. Back it up to ${BACKUP_DIR}/$f"
-		mkdir -p "$(dirname "${BACKUP_DIR}/$f")"
-		mv "${HOME}/$f" "${BACKUP_DIR}/$f"
+	if [[ -f ${HOME}/${f} ]] && [[ ! -L ${HOME}/${f} ]]; then
+		echo "${f} already exists. Back it up to ${BACKUP_DIR}/${f}"
+		mkdir -p "$(dirname "${BACKUP_DIR}/${f}")"
+		mv "${HOME}/${f}" "${BACKUP_DIR}/${f}"
 	fi
 
-	ln -vnsf "${CONF_DIR}/$f" "${HOME}/$f"
+	ln -vnsf "${CONF_DIR}/${f}" "${HOME}/${f}"
 done
 
 echo "Setting .gitignore_global"
