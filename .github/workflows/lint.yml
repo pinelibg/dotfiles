@@ -12,7 +12,7 @@ jobs:
   lint-shellcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run shellcheck
         uses: reviewdog/action-shellcheck@v1
         with:
@@ -27,7 +27,7 @@ jobs:
   lint-vint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run vint
         uses: reviewdog/action-vint@v1
         with:
@@ -36,7 +36,7 @@ jobs:
   lint-actionlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run actionlint
         uses: reviewdog/action-actionlint@v1
         with:
@@ -45,7 +45,7 @@ jobs:
   lint-tomlcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install tomlcheck
         run: |
           curl -L https://github.com/vmchale/tomlcheck/releases/download/0.1.0.38/tomlcheck-x86_64-unkown-linux-gnu -o /usr/local/bin/tomlcheck
