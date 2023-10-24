@@ -30,4 +30,14 @@ else
 	echo "Skipped. Git is not installed"
 fi
 
+echo "Update Git index to ignore per-machine configurations' changes"
+LOCAL_FILES=(
+	"conf/.config/aquaproj-aqua/local.yaml"
+)
+for f in "${LOCAL_FILES[@]}"
+do
+	echo "Ignoring ${f} ..."
+	git update-index --assume-unchanged "${f}"
+done
+
 echo "Installation finished"
