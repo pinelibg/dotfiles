@@ -1,4 +1,9 @@
-if gls --color=auto &>/dev/null; then
+if command -v exa &>/dev/null; then
+	alias exa='exa -hg --icons --git --time-style iso'
+	alias ls=exa
+	alias lt='ls -T -L2'
+	alias lta='lt -a -I \"node_modules|.git|.cache\"'
+elif gls --color=auto &>/dev/null; then
 	alias ls='gls --color=auto -F'
 elif ls --color=auto &>/dev/null; then
 	alias ls='ls --color=auto -F'
@@ -25,3 +30,7 @@ alias csv='column -s, -t'
 # Options passed to less
 export LESS='-iMR -# 4 -x4'
 
+# bat
+if command -v bat &>/dev/null; then
+	alias cat='bat -pp'
+fi
