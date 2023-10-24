@@ -5,7 +5,7 @@ CONF_DIR=${SCRIPT_ROOT}/conf
 BACKUP_DIR=${HOME}/dotfiles_backup
 
 DOTFILES=(
-.vimrc .config/nvim .bash_profile .bashrc .profile .zshrc .zshenv .zsh .gitignore_global
+.vimrc .config/nvim .config/aquaproj-aqua .bash_profile .bashrc .profile .zshrc .zshenv .zsh .gitignore_global
 )
 
 mkdir -p "${HOME}/.config"

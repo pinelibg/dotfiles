@@ -22,6 +22,26 @@ else
 	source ~/.zsh/zinit.zsh
 fi
 
+if [[ -f ~/.no_aqua ]]; then
+	:
+else
+	# aqua: https://github.com/aquaproj/aqua
+	export AQUA_ROOT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua"
+
+	if [[ ! -d "${AQUA_ROOT_DIR}" ]]; then
+		curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.1.2/aqua-installer | bash
+	fi
+
+	export PATH="${AQUA_ROOT_DIR}/bin:${PATH}"
+	export AQUA_GLOBAL_CONFIG="${HOME}/.config/aquaproj-aqua/aqua.yaml"
+
+	if command -v aqua &>/dev/null; then
+		source <(aqua completion zsh)
+	fi
+
+	aqua i -a -l
+fi
+
 ()
 {
 	local f
