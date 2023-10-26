@@ -35,8 +35,9 @@ else
 	export PATH="${AQUA_ROOT_DIR}/bin:${PATH}"
 	export AQUA_GLOBAL_CONFIG="${HOME}/.config/aquaproj-aqua/aqua.yaml"
 
-	if command -v aqua &>/dev/null; then
-		source <(aqua completion zsh)
+	if command -v zinit &>/dev/null; then
+		zinit ice wait lucid id-as"aqua-completion" as"command" atclone"aqua completion zsh | sed '1{/^$/d}' > _aqua" atpull"%atclone" run-atpull
+		zinit light zdharma-continuum/null
 	fi
 
 	aqua i -a -l
