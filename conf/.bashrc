@@ -13,6 +13,8 @@ fi
 # Workaround for vscode remote development
 [[ ! -t 1 ]] && return
 
+CONF_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd || exit 1)
+
 # Shell settings
 shopt -s checkwinsize
 shopt -s histappend
@@ -77,5 +79,12 @@ unset -f set_prompt
 if [[ -f ~/.bashrc.local ]]; then
     . ~/.bashrc.local
 fi
+
+if [[ -f ${CONF_DIR}/.bashrc.local.bash ]]; then
+    # shellcheck source=/dev/null
+    . "${CONF_DIR}/.bashrc.local.bash"
+fi
+
+unset CONF_DIR
 
 :

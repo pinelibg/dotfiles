@@ -2,6 +2,8 @@
 
 umask 022
 
+CONF_DIR="${${(%):-%x}:A:h}"
+
 if [[ -f ~/.no_zinit ]]; then
 	:
 else
@@ -53,3 +55,6 @@ fi
 }
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[[ -f ${CONF_DIR}/.zshrc.local.zsh ]] && source "${CONF_DIR}/.zshrc.local.zsh"
+
+unset CONF_DIR

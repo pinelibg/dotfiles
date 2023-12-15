@@ -1,3 +1,7 @@
+# .zshenv
+
+CONF_DIR="${${(%):-%x}:A:h}"
+
 typeset -U path
 path=( \
 	/usr/local/bin(N-/) \
@@ -24,3 +28,6 @@ fi
 skip_global_compinit=1
 
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
+[[ -f ${CONF_DIR}/.zshenv.local.zsh ]] && source "${CONF_DIR}/.zshenv.local.zsh"
+
+unset CONF_DIR
