@@ -10,5 +10,5 @@ packages:
   - name: junegunn/fzf@0.44.1
   - name: ogham/exa@v0.10.1
   - name: sharkdp/bat@v0.24.0
-  - name: sharkdp/fd@v8.7.1
+  - name: sharkdp/fd@v9.0.0
   - import: local.yaml
