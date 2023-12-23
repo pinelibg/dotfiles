@@ -226,3 +226,19 @@ let g:coc_global_extensions = [
 \]
 '''
 
+# Git wrapper
+# Enter :G to show git status window
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+# Manipulate surroundings
+# Press cs"' to replace surrounding " to '
+# Press ds[ to remove [ and ] parentheses
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+# Comment out
+# gcc: comment out line
+# gc: comment out target (in visual mode)
+[[plugins]]
+repo = 'tpope/vim-commentary'
