@@ -1,8 +1,7 @@
 if command -v eza &>/dev/null; then
-	alias eza='eza -hg --icons --git --time-style iso'
-	alias ls=eza
-	alias lt='ls -T -L2'
-	alias lta='lt -a -I \"node_modules|.git|.cache\"'
+	alias ls='eza -bghF --smart-group --icons --git --time-style=iso'
+	alias lt='ls -T -L2 --git-ignore -I \".git\"'
+	alias lta='lt -a'
 elif gls --color=auto &>/dev/null; then
 	alias ls='gls --color=auto -F'
 elif ls --color=auto &>/dev/null; then
