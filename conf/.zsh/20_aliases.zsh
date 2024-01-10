@@ -1,17 +1,17 @@
 if command -v eza &>/dev/null; then
-	alias ls='eza -bghF --smart-group --icons --git --time-style=iso'
+	alias ls='eza -bghF --smart-group --icons --git --time-style=iso --group-directories-first'
 	alias lt='ls -T -L2 --git-ignore -I \".git\"'
 	alias lta='lt -a'
 elif gls --color=auto &>/dev/null; then
-	alias ls='gls --color=auto -F'
+	alias ls='gls --color=auto -hF --group-directories-first'
 elif ls --color=auto &>/dev/null; then
-	alias ls='ls --color=auto -F'
+	alias ls='ls --color=auto -hF --group-directories-first'
 else # macos's ls
-	alias ls='ls -GF'
+	alias ls='ls -G -hF'
 fi
-alias ll='ls -lh'
+alias ll='ls -l'
 alias la='ls -a'
-alias lla='ls -lha'
+alias lla='ls -la'
 
 alias du='du -h'
 alias df='df -h'
