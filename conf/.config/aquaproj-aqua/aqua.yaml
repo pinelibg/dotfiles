@@ -1,7 +1,7 @@
 ---
 registries:
   - type: standard
-    ref: v4.128.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.131.1 # renovate: depName=aquaproj/aqua-registry
 packages:
   - name: BurntSushi/ripgrep@14.1.0
   - name: ClementTsang/bottom@0.9.6
