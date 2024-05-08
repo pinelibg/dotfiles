@@ -36,7 +36,7 @@ else
 	export AQUA_GLOBAL_CONFIG="${HOME}/.config/aquaproj-aqua/aqua.yaml"
 
 	if command -v zinit &>/dev/null; then
-		zinit ice wait lucid id-as"aqua-completion" as"command" atclone"aqua completion zsh | sed '1{/^$/d}' > _aqua" atpull"%atclone" run-atpull
+		zinit ice wait lucid id-as"aqua-completion" as"command" atclone"aqua completion zsh | sed '/^$/d' > _aqua" atpull"%atclone" run-atpull
 		zinit light zdharma-continuum/null
 	fi
 
