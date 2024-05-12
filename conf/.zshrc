@@ -29,7 +29,7 @@ else
 	export AQUA_ROOT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua"
 
 	if [[ ! -d "${AQUA_ROOT_DIR}" ]]; then
-		curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v3.0.0/aqua-installer | bash
+		curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v3.0.1/aqua-installer | bash
 	fi
 
 	export PATH="${AQUA_ROOT_DIR}/bin:${PATH}"
