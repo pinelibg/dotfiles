@@ -10,5 +10,5 @@ packages:
   - name: junegunn/fzf@v0.55.0
   - name: eza-community/eza@v0.19.3
   - name: sharkdp/bat@v0.24.0
-  - name: sharkdp/fd@v9.0.0
+  - name: sharkdp/fd@v10.2.0
   - import: local.yaml
