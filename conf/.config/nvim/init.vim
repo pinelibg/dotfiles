@@ -15,7 +15,7 @@ set shiftwidth=4
 set cursorline
 set laststatus=2
 set background=dark
-if (has('termguicolors'))
+if has('termguicolors')
   set termguicolors
 endif
 "set ambiwidth=double
