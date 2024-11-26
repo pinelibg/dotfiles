@@ -24,8 +24,8 @@ zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zinit ice wait lucid silent; zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
 
-ENHANCD_DISABLE_HOME=1
-zinit ice pick'init.sh' wait lucid nocompletions; zinit light b4b4r07/enhancd
+zinit ice wait lucid blockf; zinit light rupa/z
+zinit ice wait lucid; zinit light mrjohannchang/fz.sh
 
 zinit ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
 zinit light trapd00r/LS_COLORS
