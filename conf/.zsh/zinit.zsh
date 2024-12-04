@@ -24,6 +24,8 @@ zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zinit ice wait lucid silent; zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
 
+zinit ice wait lucid; zinit light Aloxaf/fzf-tab
+
 zinit ice wait lucid blockf; zinit light rupa/z
 zinit ice wait lucid; zinit light mrjohannchang/fz.sh
 
