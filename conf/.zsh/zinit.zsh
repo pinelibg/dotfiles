@@ -1,10 +1,4 @@
 PATH=$ZPFX/bin:$PATH
-zinit light-mode for \
-    zdharma-continuum/z-a-rust \
-    zdharma-continuum/z-a-as-monitor \
-    zdharma-continuum/z-a-patch-dl \
-    zdharma-continuum/z-a-bin-gem-node
-
 
 zinit ice wait lucid blockf; zinit light zsh-users/zsh-completions
 zinit ice wait'!0z' lucid atinit"zicompinit; zicdreplay"; zinit light zdharma-continuum/fast-syntax-highlighting
@@ -24,16 +18,13 @@ zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zinit ice wait lucid silent; zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
 
-zinit ice wait lucid; zinit light Aloxaf/fzf-tab
+zinit ice wait lucid blockf; zinit light Aloxaf/fzf-tab
 
 zinit ice wait lucid blockf; zinit light rupa/z
 zinit ice wait lucid; zinit light mrjohannchang/fz.sh
 
-zinit ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
-zinit light trapd00r/LS_COLORS
-
 DIRCOLORS_SOLARIZED_ZSH_THEME="256dark"
-zinit light pinelibg/dircolors-solarized-zsh
+zinit ice wait lucid; zinit light pinelibg/dircolors-solarized-zsh
 
 # theme
 [[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
