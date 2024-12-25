@@ -1,3 +1,5 @@
+# Simple theme when using ZSH without zinit
+
 prompt_setup() {
 	# from Tomorrow Night palette
 	if [[ "$TERM" = *"256color" ]]; then
@@ -36,7 +38,8 @@ prompt_setup() {
 	SPROMPT="is \"%r\" correct? [(n)o,(y)es,(a)bort,(e)dit]: "
 }
 
-prompt_setup
+if ! command -v zinit &>/dev/null; then
+	prompt_setup
+fi
 
 unfunction prompt_setup
-

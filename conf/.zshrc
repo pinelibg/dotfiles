@@ -7,26 +7,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ -f ~/.no_zinit ]]; then
-	:
-else
-	# zinit : https://github.com/zdharma-continuum/zinit
-	ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-	# Install zinit if not installed
-	if [[ ! -d ${ZINIT_HOME} ]]; then
-		mkdir -p "$(dirname $ZINIT_HOME)"
-		git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-	fi
-
-	source "${ZINIT_HOME}/zinit.zsh"
-
-	autoload -Uz _zinit
-	(( ${+_comps} )) && _comps[zinit]=_zinit
-
-	source ~/.zsh/zinit.zsh
-fi
-
 if [[ -f ~/.no_aqua ]]; then
 	:
 else
@@ -40,21 +20,39 @@ else
 	export PATH="${AQUA_ROOT_DIR}/bin:${PATH}"
 	export AQUA_GLOBAL_CONFIG="${HOME}/.config/aquaproj-aqua/aqua.yaml"
 
-	if command -v zinit &>/dev/null; then
-		zinit ice wait lucid id-as"aqua-completion" as"command" atclone"aqua completion zsh | sed '/^$/d' > _aqua" atpull"%atclone" run-atpull
-		zinit light zdharma-continuum/null
-	fi
-
 	aqua i -a -l
 fi
 
-()
+if [[ -f ~/.no_zinit ]]; then
+	:
+else
+	# zinit : https://github.com/zdharma-continuum/zinit
+	ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+	# Install zinit if not installed
+	if [[ ! -d ${ZINIT_HOME} ]]; then
+		mkdir -p "$(dirname ${ZINIT_HOME})"
+		git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT_HOME}"
+	fi
+
+	source "${ZINIT_HOME}/zinit.zsh"
+
+	autoload -Uz _zinit
+	(( ${+_comps} )) && _comps[zinit]=_zinit
+
+	source ~/.zsh/zinit.zsh
+fi
+
+function zshrc_source_config()
 {
 	local f
-	for f in ~/.zsh/*_*.zsh(N-.)
+	for f in ~/.zsh/[0-9]*_*.zsh(N-.)
 	do
-		source "$f"
+		source "${f}"
 	done
 }
+
+zshrc_source_config
+unfunction zshrc_source_config
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

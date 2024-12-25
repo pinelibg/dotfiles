@@ -1,5 +1,3 @@
-PATH=$ZPFX/bin:$PATH
-
 zinit ice wait lucid blockf; zinit light zsh-users/zsh-completions
 zinit ice wait'!0z' lucid atinit"zicompinit; zicdreplay"; zinit light zdharma-continuum/fast-syntax-highlighting
 
@@ -10,8 +8,6 @@ zinit ice wait lucid atload'
   bindkey "^P" history-substring-search-up
   bindkey "^N" history-substring-search-down'
 zinit light zsh-users/zsh-history-substring-search
-
-zinit ice wait lucid; zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # ssh-agent
 zstyle :omz:plugins:ssh-agent quiet yes
@@ -30,5 +26,11 @@ zinit ice wait lucid; zinit light pinelibg/dircolors-solarized-zsh
 [[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit ice wait lucid; zinit light trystan2k/zsh-tab-title
+
+zinit ice has"aqua" wait lucid id-as"aqua-completion" as"completion" atclone"aqua completion zsh | sed '/^$/d' > _aqua" atpull"%atclone" run-atpull
+zinit light zdharma-continuum/null
+
+zinit ice has"gh" wait lucid id-as"gh-cli-comp" as"completion" atclone"gh completion -s zsh > _gh" atpull"%atclone" run-atpull
+zinit light zdharma-continuum/null
 
 [[ -f ~/.zsh/zinit.zsh.local ]] && source ~/.zsh/zinit.zsh.local
