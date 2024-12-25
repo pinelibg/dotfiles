@@ -4,15 +4,6 @@ if ! (type zinit &>/dev/null || type compinit &>/dev/null) ; then
 	compinit -u
 fi
 
-# Set LS_COLORS variable
-if [[ -z "${LS_COLORS}" ]]; then
-	if type dircolors &>/dev/null; then
-		eval "$(dircolors -b)"
-	elif type gdircolors &>/dev/null; then
-		eval "$(gdircolors -b)"
-	fi
-fi
-
 zstyle ':completion:*:default' menu select=1
 if [[ -n "${LS_COLORS}" ]]; then
 	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -25,4 +16,3 @@ zstyle ':completion:*' use-cache true
 
 # Ignore completion function from command correction
 CORRECT_IGNORE='_*'
-
