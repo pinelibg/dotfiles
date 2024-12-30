@@ -22,3 +22,12 @@ bindkey '5~' kill-word
 bindkey "^[[3~" delete-char
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
+
+# Ctrl + r to search history with fzf
+function fzf-select-history() {
+ BUFFER=$(history -r 1 | fzf --query "${LBUFFER}" --layout reverse --height 40% --nth 2.. --bind 'enter:become:echo {2..}' --tiebreak index)
+ CURSOR=${#BUFFER}
+ zle reset-prompt
+}
+zle -N fzf-select-history
+bindkey '^r' fzf-select-history
