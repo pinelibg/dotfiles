@@ -27,10 +27,10 @@ zinit ice wait lucid; zinit light pinelibg/dircolors-solarized-zsh
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit ice wait lucid; zinit light trystan2k/zsh-tab-title
 
-zinit ice has"aqua" wait lucid id-as"aqua-completion" as"completion" atclone"aqua completion zsh | sed '/^$/d' > _aqua" atpull"%atclone" run-atpull
+zinit ice has"aqua" wait lucid id-as"aqua-completion" as"program" atclone"aqua completion zsh | sed '/^$/d' > _aqua" atpull"%atclone" run-atpull
 zinit light zdharma-continuum/null
 
-zinit ice has"gh" wait lucid id-as"gh-cli-comp" as"completion" atclone"gh completion -s zsh > _gh" atpull"%atclone" run-atpull
+zinit ice has"gh" wait lucid id-as"gh-cli-comp" as"program" atclone"gh completion -s zsh > _gh" atpull"%atclone" run-atpull
 zinit light zdharma-continuum/null
 
 [[ -f ~/.zsh/zinit.zsh.local ]] && source ~/.zsh/zinit.zsh.local
