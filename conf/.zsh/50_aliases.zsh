@@ -36,5 +36,9 @@ fi
 
 # mkcd: create a directory and cd into it
 mkcd() {
-	mkdir -p "$@" && cd "${@:$#}"
+	if [[ "$#" -eq 0 ]]; then
+		echo "Usage: mkcd <dir>" >&2
+		return 1
+	fi
+	mkdir -p "$@" && cd "${@:$#}" || return 1
 }
