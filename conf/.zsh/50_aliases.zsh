@@ -33,3 +33,12 @@ export LESS='-iMR -# 4 -x4'
 if command -v bat &>/dev/null; then
 	alias cat='bat -pp'
 fi
+
+# mkcd: create a directory and cd into it
+mkcd() {
+	if [[ "$#" -eq 0 ]]; then
+		echo "Usage: mkcd <dir>" >&2
+		return 1
+	fi
+	mkdir -p "$@" && cd "${@:$#}" || return 1
+}
