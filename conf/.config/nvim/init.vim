@@ -47,20 +47,6 @@ set updatetime=300
 highlight FullWidthSpace ctermbg=LightCyan
 match FullWidthSpace /　/
 
-" Paste
-if &term =~ 'xterm'
-  let &t_SI .= "\e[?2004h"
-  let &t_EI .= "\e[?2004l"
-  let &pastetoggle = "\e[201~"
-
-  function XTermPasteBegin(ret)
-    set paste
-    return a:ret
-  endfunction
-
-  inoremap <special> <expr> <Esc>[200~ XTermPasteBegin('')
-endif
-
 " Enable mouse
 if has('mouse')
   set mouse=a
