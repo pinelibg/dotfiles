@@ -12,11 +12,10 @@ START_BLOCK="# MANAGED BLOCK BY DOTFILE"
 END_BLOCK="# END OF MANAGED BLOCK BY DOTFILE"
 
 # Output content before managed block
-sed "/${START_BLOCK}/Q" "${tempfile}"
+sed "/${START_BLOCK}/q" "${tempfile}" | sed '$d'
 
 # Insert template content
 echo "${START_BLOCK}"
-# Using chezmoi to execute the template
 chezmoi execute-template '{{ printf "{{ template \"%s\" }}" . }}'
 echo "${END_BLOCK}"
 
