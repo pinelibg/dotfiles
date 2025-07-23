@@ -26,5 +26,11 @@ if ! command -v chezmoi &> /dev/null; then
 		fi
 fi
 
-# Initialize chezmoi with the current script directory as the source
-"${INSTALL_DIR}/chezmoi" init --apply --source "${SCRIPT_DIR}"
+# Configure chezmoi source directory to the current directory
+mkdir -p "${HOME}/.config/chezmoi"
+cat <<EOF > "${HOME}/.config/chezmoi/chezmoi.toml"
+sourceDir = "${SCRIPT_DIR}"
+EOF
+
+# Initialize chezmoi and apply the dotfiles
+"${INSTALL_DIR}/chezmoi" init --apply
