@@ -1,6 +1,12 @@
 #!/bin/bash
 
-set -eu
+set -eu -o pipefail
+
+function insert_template() {
+  echo "${START_BLOCK}"
+  chezmoi execute-template '{{ printf "{{ template \"%s\" }}" . }}'
+  echo "${END_BLOCK}"
+}
 
 # Create temporary file to store input
 tempfile="$(mktemp)"
@@ -11,13 +17,20 @@ cat > "${tempfile}"
 START_BLOCK="# MANAGED BLOCK BY DOTFILE"
 END_BLOCK="# END OF MANAGED BLOCK BY DOTFILE"
 
-# Output content before managed block
-sed "/${START_BLOCK}/q" "${tempfile}" | sed '$d'
+# If the original file does not contain the managed block, insert it at the beginning
+if ! (grep -q "${START_BLOCK}" "${tempfile}" && grep -q "${END_BLOCK}" "${tempfile}"); then
+  # Output managed block
+  insert_template
 
-# Insert template content
-echo "${START_BLOCK}"
-chezmoi execute-template '{{ printf "{{ template \"%s\" }}" . }}'
-echo "${END_BLOCK}"
+  # Output the entire content of the file
+  cat "${tempfile}"
+else
+  # Output content before managed block
+  sed "/${START_BLOCK}/q" "${tempfile}" | sed '$d'
 
-# Output content after managed block
-sed -n "/${END_BLOCK}/,\$p" "${tempfile}" | sed "1d"
+  # Output managed block
+  insert_template
+
+  # Output content after managed block
+  sed -n "/${END_BLOCK}/,\$p" "${tempfile}" | sed "1d"
+fi
