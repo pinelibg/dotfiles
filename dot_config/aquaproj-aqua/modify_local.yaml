@@ -1,0 +1,9 @@
+---
+{{- # chezmoi:modify-template -}}
+# Per-machine configuration goes here
+packages:
+  # For example:
+  # - name: neovim/neovim@v0.11.3
+  {{- if $packages := (fromYaml .chezmoi.stdin).packages -}}
+  {{- toYaml $packages | trim | nindent 2 -}}
+  {{- end }}
