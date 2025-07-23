@@ -4,6 +4,9 @@
 packages:
   # For example:
   # - name: neovim/neovim@v0.11.3
-  {{- if $packages := (fromYaml .chezmoi.stdin).packages -}}
-  {{- toYaml $packages | trim | nindent 2 -}}
+  {{- if .chezmoi.stdin -}}
+    {{- $stdin := fromYaml .chezmoi.stdin -}}
+    {{- if $stdin.packages -}}
+      {{- toYaml $stdin.packages | trim | nindent 2 -}}
+    {{- end -}}
   {{- end }}
