@@ -22,6 +22,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends zsh
         if: runner.os == 'Linux'
+      - name: Add chezmoi PATH (act only)
+        if: ${{ env.ACT }}
+        run: echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
       - name: Run install.sh
         run: ./install.sh
       - name: Test zsh
@@ -47,6 +50,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 16
+      - name: Add chezmoi PATH (act only)
+        if: ${{ env.ACT }}
+        run: echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
       - name: Run install.sh
         run: ./install.sh
       - name: Test neovim
