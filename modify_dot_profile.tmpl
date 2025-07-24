@@ -1,1 +1,9 @@
-{{- template "modify_shellfile" "dot_profile" -}}
+#!/bin/bash
+
+function print_template() {
+  cat <<'EOF'
+{{ template "dot_profile" -}}
+EOF
+}
+
+. "${CHEZMOI_SOURCE_DIR}/scripts/modify_shellfile.sh"
