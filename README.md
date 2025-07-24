@@ -31,7 +31,11 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-## Licence
+## Migration
+
+If you're upgrading from the previous version of this dotfiles repository, see [Migration Guide](docs/MIGRATION.md).
+
+## License
 
 The code is available under the MIT license.
 See the [LICENSE.txt](LICENSE.txt) file for more information.
