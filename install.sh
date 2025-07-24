@@ -40,4 +40,4 @@ else
 fi
 
 # Initialize chezmoi and apply the dotfiles
-chezmoi init --apply
+chezmoi init --apply -S "${SCRIPT_DIR}"

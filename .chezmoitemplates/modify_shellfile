@@ -4,7 +4,7 @@ set -eu -o pipefail
 
 function insert_template() {
   echo "${START_BLOCK}"
-  chezmoi execute-template '{{ printf "{{ template \"%s\" }}" . }}'
+  chezmoi execute-template <.chezmoitemplates/{{ . }}
   echo "${END_BLOCK}"
 }
 
