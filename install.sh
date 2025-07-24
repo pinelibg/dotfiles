@@ -24,13 +24,20 @@ if ! command -v chezmoi &> /dev/null; then
 			echo "Neither curl nor wget is available. Please install one of them to proceed." >&2
 			exit 1
 		fi
+		export PATH="${INSTALL_DIR}:${PATH}"
 fi
 
 # Configure chezmoi source directory to the current directory
-mkdir -p "${HOME}/.config/chezmoi"
-cat <<EOF > "${HOME}/.config/chezmoi/chezmoi.toml"
+if [[ ! -f "${SCRIPT_DIR}/chezmoi.toml" ]]; then
+	echo "Creating chezmoi configuration file..."
+	mkdir -p "${HOME}/.config/chezmoi"
+	cat <<EOF > "${HOME}/.config/chezmoi/chezmoi.toml"
 sourceDir = "${SCRIPT_DIR}"
 EOF
+else
+	echo "chezmoi configuration file already exists."
+	echo "To change the default source directory, edit ${HOME}/.config/chezmoi/chezmoi.toml"
+fi
 
 # Initialize chezmoi and apply the dotfiles
-"${INSTALL_DIR}/chezmoi" init --apply
+chezmoi init --apply
