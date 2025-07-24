@@ -1,72 +1,43 @@
 #!/bin/bash
 
-SCRIPT_ROOT=$(cd "$(dirname "${0}")" && pwd || exit 1)
-CONF_DIR=${SCRIPT_ROOT}/conf
-BACKUP_DIR=${HOME}/dotfiles_backup
+set -e -o pipefail
 
-DOTFILES=(
-.vimrc .config/nvim .config/aquaproj-aqua .zsh .gitignore_global
-)
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-$0}")" && pwd || exit 1)
 
-mkdir -p "${HOME}/.config"
+# Setup chezmoi and install dotfiles
 
-for f in "${DOTFILES[@]}"
-do
-	echo "Linking ${f} ..."
-
-	if [[ -f ${HOME}/${f} ]] && [[ ! -L ${HOME}/${f} ]]; then
-		echo "${f} already exists. Back it up to ${BACKUP_DIR}/${f}"
-		mkdir -p "$(dirname "${BACKUP_DIR}/${f}")"
-		mv "${HOME}/${f}" "${BACKUP_DIR}/${f}"
-	fi
-
-	ln -vnsf "${CONF_DIR}/${f}" "${HOME}/${f}"
-done
-
-SHELL_RCS=(
-.bash_profile .bashrc .profile .zshenv .zshrc
-)
-
-for f in "${SHELL_RCS[@]}"
-do
-	echo "Creating shell config file ${f} ..."
-
-	if [[ -f ${HOME}/${f} ]]; then
-		if grep -q '^# MANAGED BLOCK BY DOTFILE$' "${HOME}/${f}"; then
-			continue
-		fi
-
-		if [[ ! -L ${HOME}/${f} ]]; then
-			echo "${f} already exists. Back it up to ${BACKUP_DIR}/${f}"
-			mkdir -p "$(dirname "${BACKUP_DIR}/${f}")"
-			mv "${HOME}/${f}" "${BACKUP_DIR}/${f}"
-		else
-			unlink "${HOME}/${f}"
-		fi
-	fi
-
-	cat <<-EOS >>"${HOME}/${f}"
-		# MANAGED BLOCK BY DOTFILE
-		test -f "${CONF_DIR}/${f}" && . "${CONF_DIR}/${f}"
-		# END OF MANAGED BLOCK BY DOTFILE
-		EOS
-done
-
-echo "Setting .gitignore_global"
-if type git &>/dev/null; then
-	git config --global core.excludesfile ~/.gitignore_global
-else
-	echo "Skipped. Git is not installed"
+# Prepare installation directory
+INSTALL_DIR="${HOME}/.local/bin"
+if [[ ! -d "${INSTALL_DIR}" ]]; then
+	echo "Creating installation directory at ${INSTALL_DIR}..."
+	mkdir -p "${INSTALL_DIR}"
 fi
 
-echo "Update Git index to ignore per-machine configurations' changes"
-LOCAL_FILES=(
-	"conf/.config/aquaproj-aqua/local.yaml"
-)
-for f in "${LOCAL_FILES[@]}"
-do
-	echo "Ignoring ${f} ..."
-	git update-index --assume-unchanged "${f}"
-done
+# Check if chezmoi is installed, if not, install it
+if ! command -v chezmoi &> /dev/null; then
+		echo "chezmoi is not installed. Installing chezmoi..."
+		if command -v curl &> /dev/null; then
+			sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "${INSTALL_DIR}"
+		elif command -v wget &> /dev/null; then
+			sh -c "$(wget -qO- get.chezmoi.io)" -- -b "${INSTALL_DIR}"
+		else
+			echo "Neither curl nor wget is available. Please install one of them to proceed." >&2
+			exit 1
+		fi
+		export PATH="${INSTALL_DIR}:${PATH}"
+fi
 
-echo "Installation finished"
+# Configure chezmoi source directory to the current directory
+if [[ ! -f "${SCRIPT_DIR}/chezmoi.toml" ]]; then
+	echo "Creating chezmoi configuration file..."
+	mkdir -p "${HOME}/.config/chezmoi"
+	cat <<EOF > "${HOME}/.config/chezmoi/chezmoi.toml"
+sourceDir = "${SCRIPT_DIR}"
+EOF
+else
+	echo "chezmoi configuration file already exists."
+	echo "To change the default source directory, edit ${HOME}/.config/chezmoi/chezmoi.toml"
+fi
+
+# Initialize chezmoi and apply the dotfiles
+chezmoi init --apply -S "${SCRIPT_DIR}"

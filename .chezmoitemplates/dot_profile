@@ -1,4 +1,3 @@
-# .profile
 # shellcheck shell=sh
 
 umask 022

@@ -1,14 +1,14 @@
 # pinelibg's dotfiles
 
-[![Lint files](https://github.com/pinelibg/dotfiles/actions/workflows/lint.yml/badge.svg?branch=master&event=push)](https://github.com/pinelibg/dotfiles/actions/workflows/lint.yml?query=event%3Apush+branch%3Amaster)
-[![Test install](https://github.com/pinelibg/dotfiles/actions/workflows/test.yml/badge.svg?branch=master&event=push)](https://github.com/pinelibg/dotfiles/actions/workflows/test.yml?query=event%3Apush+branch%3Amaster)
+[![Lint files](https://github.com/pinelibg/dotfiles/actions/workflows/lint.yml/badge.svg?branch=main&event=push)](https://github.com/pinelibg/dotfiles/actions/workflows/lint.yml?query=event%3Apush+branch%3Amain)
+[![Test install](https://github.com/pinelibg/dotfiles/actions/workflows/test.yml/badge.svg?branch=main&event=push)](https://github.com/pinelibg/dotfiles/actions/workflows/test.yml?query=event%3Apush+branch%3Amain)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 This repository contains my personal configuration files for shells and editors.
 
 ## Features
 
-- creates symbolic links of configuration files from home directory ([install.sh](install.sh))
+- uses [chezmoi](https://www.chezmoi.io/) to manage dotfiles
 - runs on Linux and macOS
 - contains settings for
   - Bash (shell)
@@ -17,7 +17,13 @@ This repository contains my personal configuration files for shells and editors.
 
 ## Install
 
-To use it, run the following commands in the terminal.
+Install [chezmoi](https://www.chezmoi.io/) and dotfiles with the single command:
+
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply pinelibg
+```
+
+Or you can run the following commands in the terminal.
 
 ```sh
 git clone https://github.com/pinelibg/dotfiles.git ~/dotfiles
