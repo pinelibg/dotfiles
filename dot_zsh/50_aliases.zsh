@@ -34,6 +34,12 @@ if command -v bat &>/dev/null; then
 	alias cat='bat -pp'
 fi
 
+# neovim
+if command -v nvim &>/dev/null; then
+	alias vim='nvim'
+	alias vi='nvim'
+fi
+
 # mkcd: create a directory and cd into it
 mkcd() {
 	if [[ "$#" -eq 0 ]]; then
