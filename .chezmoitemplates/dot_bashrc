@@ -73,6 +73,8 @@ function set_prompt() {
 set_prompt
 unset -f set_prompt
 
+{{ template "shell_setup_aqua" }}
+
 if [[ -f ~/.bashrc.local ]]; then
     . ~/.bashrc.local
 fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# aqua.yaml hash: {{ include "dot_config/aquaproj-aqua/aqua.yaml" | sha256sum }}
+
+set -e
+
+export AQUA_ROOT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua"
+export PATH=${AQUA_ROOT_DIR}/bin:$PATH
+export AQUA_GLOBAL_CONFIG="${HOME}/.config/aquaproj-aqua/aqua.yaml"
+
+echo "Installing global CLI tools using aqua..."
+aqua i -a
