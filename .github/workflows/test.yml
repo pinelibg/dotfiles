@@ -49,7 +49,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - name: Setup aqua
         run: |
-          echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> ${GITHUB_PATH}
-          echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> ${GITHUB_ENV}
+          echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
+          echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
       - name: Test neovim configuration using nvim installed by aqua
         run: nvim -c q
