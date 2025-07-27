@@ -8,6 +8,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   test-zsh:
     runs-on: ${{ matrix.os }}
@@ -24,6 +28,8 @@ jobs:
         if: runner.os == 'Linux'
       - name: Run install.sh
         run: ./install.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Test zsh
         run: zsh -i -c "exit 0"
   test-neovim:
@@ -34,20 +40,16 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     steps:
       - uses: actions/checkout@v4
-      - name: Install packages (Linux)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends neovim
-        if: runner.os == 'Linux'
-      - name: Install packages (macOS)
-        run: |
-          brew upgrade
-          brew install neovim
-        if: runner.os == 'macOS'
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
       - name: Run install.sh
         run: ./install.sh
-      - name: Test neovim
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Setup aqua
+        run: |
+          echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
+          echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
+      - name: Test neovim configuration using nvim installed by aqua
         run: nvim -c q

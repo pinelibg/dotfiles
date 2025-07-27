@@ -73,6 +73,10 @@ function set_prompt() {
 set_prompt
 unset -f set_prompt
 
+{{ template "shell_setup_aqua" }}
+
+{{ template "shell_shared/aliases" }}
+
 if [[ -f ~/.bashrc.local ]]; then
     . ~/.bashrc.local
 fi
