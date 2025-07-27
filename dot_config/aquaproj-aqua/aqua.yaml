@@ -11,4 +11,5 @@ packages:
   - name: eza-community/eza@v0.23.0
   - name: sharkdp/bat@v0.25.0
   - name: sharkdp/fd@v10.2.0
+  - name: neovim/neovim@v0.11.3
   - import: local.yaml
