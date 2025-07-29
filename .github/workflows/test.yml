@@ -8,17 +8,16 @@ on:
   pull_request:
   workflow_dispatch:
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   test-zsh:
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: ${{ matrix.os == 'windows-latest' && 'C:/msys64/usr/bin/bash.exe --noprofile --norc -eo pipefail {0}' || 'bash' }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v4
       - name: Install zsh (Linux)
@@ -26,6 +25,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends zsh
         if: runner.os == 'Linux'
+      - name: Install zsh (Windows)
+        run: |
+          export PATH="/c/msys64/usr/bin:$PATH"
+          pacman -Sy --noconfirm zsh
+        if: runner.os == 'Windows'
       - name: Run install.sh
         run: ./install.sh
         env:
@@ -34,10 +38,13 @@ jobs:
         run: zsh -i -c "exit 0"
   test-neovim:
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: ${{ matrix.os == 'windows-latest' && 'C:/msys64/usr/bin/bash.exe --noprofile --norc -eo pipefail {0}' || 'bash' }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
