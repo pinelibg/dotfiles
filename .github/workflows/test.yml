@@ -19,24 +19,17 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup-chezmoi
+        with:
+          msys2-packages: zsh
       - name: Install zsh (Linux)
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends zsh
         if: runner.os == 'Linux'
-      - name: Setup MSYS2 (Windows)
-        uses: msys2/setup-msys2@v2
-        with:
-          update: true
-          install: >-
-            unzip
-            zsh
-        if: runner.os == 'Windows'
-      - name: Run install.sh
-        run: ./install.sh
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
       - name: Test zsh
         run: zsh -i -c "exit 0"
   test-neovim:
@@ -49,24 +42,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup MSYS2 (Windows)
-        uses: msys2/setup-msys2@v2
-        with:
-          update: true
-          install: >-
-            unzip
-        if: runner.os == 'Windows'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-      - name: Run install.sh
-        run: ./install.sh
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-      - name: Setup aqua
-        run: |
-          echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
-          echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup-chezmoi
       - name: Test neovim configuration using nvim installed by aqua
         run: nvim -c q
