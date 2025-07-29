@@ -11,26 +11,14 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Setup MSYS2 PATH (Windows)
-      run: |
-        echo "C:/msys64/bin" >> "${GITHUB_PATH}"
-        echo "C:/msys64/usr/bin" >> "${GITHUB_PATH}"
-        echo "C:/msys64/usr/local/bin" >> "${GITHUB_PATH}"
-      shell: C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}
-      if: runner.os == 'Windows'
-
-    - name: Install MSYS2 packages (Windows)
-      run: |
-        pacman -Sy --noconfirm git unzip ${{ inputs.msys2-packages }}
-      shell: C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}
-      if: runner.os == 'Windows'
-
-    - name: Install chezmoi (Windows)
-      run: |
-        New-Item -Path $env:HOMEPATH/.local/bin -ItemType Directory -Force
-        iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b '$env:HOMEPATH/.local/bin'"
-        "$env:HOMEPATH/.local/bin" | Out-File -FilePath "$env:GITHUB_PATH" -Append
-      shell: pwsh
+    - name: Setup MSYS2 (Windows)
+      uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: >-
+          git
+          unzip
+          ${{ inputs.msys2-packages }}
       if: runner.os == 'Windows'
 
     - name: Setup Node.js
@@ -40,21 +28,20 @@ runs:
 
     - name: Run install.sh
       run: ./install.sh
-      shell: ${{ runner.os == 'Windows' && 'C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}' || 'bash' }}
+      shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
-    - name: Setup aqua (Linux/macOS)
+    - name: Setup aqua environment (Linux/macOS)
       run: |
         echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
         echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
-      shell: "bash"
+      shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
       if: runner.os != 'Windows'
 
-    - name: Setup aqua (Windows)
+    - name: Setup aqua environment (Windows)
       run: |
-        echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
-        echo "${HOME}/AppData/Local/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
+        echo 'export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin:$PATH"' >> "${HOME}/.bashrc"
         echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
-      shell: C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}
+      shell: msys2 {0}
       if: runner.os == 'Windows'
