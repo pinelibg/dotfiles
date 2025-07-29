@@ -49,7 +49,7 @@ jobs:
       - name: Setup aqua (Windows)
         run: |
           echo "${XDG_DATA_HOME:-${LOCALAPPDATA:-$HOME/AppData/Local}}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
-          echo "${XDG_DATA_HOME:-${LOCALAPPDATA:-$HOME/AppData/Local}}/aquaproj-aqua/bin"
+          echo 'PATH="${XDG_DATA_HOME:-${LOCALAPPDATA:-$HOME/AppData/Local}}/aquaproj-aqua/bin:$PATH"' >> "${HOME}/.bashrc"
         shell: 'msys2 {0}'
         if: runner.os == 'Windows'
       - name: Test neovim configuration using nvim installed by aqua
