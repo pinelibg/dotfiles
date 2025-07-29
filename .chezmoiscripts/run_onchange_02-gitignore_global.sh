@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Setup global gitignore configuration
 # This script runs once to configure git to use the global gitignore file
 
-set -e
+set -euo pipefail
 
 echo "Setting up global gitignore configuration..."
 
