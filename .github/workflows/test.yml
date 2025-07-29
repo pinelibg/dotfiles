@@ -48,8 +48,7 @@ jobs:
         uses: ./.github/actions/setup-chezmoi
       - name: Setup aqua (Windows)
         run: |
-          echo "${XDG_DATA_HOME:-${LOCALAPPDATA:-$HOME/AppData/Local}}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
-          echo 'PATH="${XDG_DATA_HOME:-${LOCALAPPDATA:-$HOME/AppData/Local}}/aquaproj-aqua/bin:$PATH"' >> "${HOME}/.bashrc"
+          echo 'export PATH=${AQUA_ROOT_DIR:-$HOME/AppData/Local/aquaproj-aqua}/bin:$PATH' >> "${HOME}/.bashrc"
         shell: 'msys2 {0}'
         if: runner.os == 'Windows'
       - name: Test neovim configuration using nvim installed by aqua
