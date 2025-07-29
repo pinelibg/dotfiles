@@ -31,3 +31,17 @@ runs:
       shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
       env:
         GITHUB_TOKEN: ${{ github.token }}
+
+    - name: Setup aqua (Linux/macOS)
+      run: |
+        echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
+        echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
+      shell: 'bash'
+      if: runner.os != 'Windows'
+
+    - name: Setup aqua (Windows)
+      run: |
+        echo "${XDG_DATA_HOME:-${LOCALAPPDATA:-$HOME/AppData/Local}}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
+        echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
+      shell: 'msys2 {0}'
+      if: runner.os == 'Windows'
