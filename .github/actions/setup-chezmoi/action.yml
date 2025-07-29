@@ -17,6 +17,14 @@ runs:
       shell: C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}
       if: runner.os == 'Windows'
 
+    - name: Install chezmoi (Windows)
+      run: |
+        mkdir -p ${HOME}/.local/bin
+        sh -c "$(curl -fsLS get.chezmoi.io)" -b ${HOME}/.local/bin
+        echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
+      shell: C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}
+      if: runner.os == 'Windows'
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
