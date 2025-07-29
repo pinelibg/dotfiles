@@ -1,24 +1,20 @@
 ---
-name: 'Setup Chezmoi Environment'
-description: 'Common setup steps for chezmoi workflows'
+name: "Setup Chezmoi Environment"
+description: "Common setup steps for chezmoi workflows"
 
 inputs:
   msys2-packages:
-    description: 'Additional MSYS2 packages to install (space-separated)'
+    description: "Additional MSYS2 packages to install (space-separated)"
     required: false
-    default: ''
+    default: ""
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - name: Setup MSYS2 (Windows)
-      uses: msys2/setup-msys2@v2
-      with:
-        update: true
-        install: >-
-          git
-          unzip
-          ${{ inputs.msys2-packages }}
+    - name: Install MSYS2 packages (Windows)
+      run: |
+        C:/msys64/usr/bin/pacman.exe -Sy --noconfirm git unzip ${{ inputs.msys2-packages }}
+      shell: C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}
       if: runner.os == 'Windows'
 
     - name: Setup Node.js
@@ -28,7 +24,7 @@ runs:
 
     - name: Run install.sh
       run: ./install.sh
-      shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
+      shell: ${{ runner.os == 'Windows' && 'C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}' || 'bash' }}
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
@@ -36,12 +32,12 @@ runs:
       run: |
         echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
         echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
-      shell: 'bash'
+      shell: "bash"
       if: runner.os != 'Windows'
 
     - name: Setup aqua (Windows)
       run: |
-        echo "${XDG_DATA_HOME:-${LOCALAPPDATA:-$HOME/AppData/Local}}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
+        echo "${HOME}/AppData/Local/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
         echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
-      shell: 'msys2 {0}'
+      shell: C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}
       if: runner.os == 'Windows'
