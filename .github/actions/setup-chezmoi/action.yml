@@ -53,6 +53,7 @@ runs:
 
     - name: Setup aqua (Windows)
       run: |
+        echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
         echo "${HOME}/AppData/Local/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
         echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
       shell: C:\msys64\usr\bin\bash.exe --noprofile --norc -eo pipefail {0}
