@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults:
       run:
-        shell: ${{ matrix.os == 'windows-latest' && 'C:/msys64/usr/bin/bash.exe --noprofile --norc -eo pipefail {0}' || 'bash' }}
+        shell: ${{ matrix.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
     strategy:
       fail-fast: false
       matrix:
@@ -25,10 +25,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends zsh
         if: runner.os == 'Linux'
-      - name: Install zsh (Windows)
-        run: |
-          export PATH="/c/msys64/usr/bin:$PATH"
-          pacman -Sy --noconfirm zsh
+      - name: Setup MSYS2 (Windows)
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: zsh
         if: runner.os == 'Windows'
       - name: Run install.sh
         run: ./install.sh
@@ -40,13 +41,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults:
       run:
-        shell: ${{ matrix.os == 'windows-latest' && 'C:/msys64/usr/bin/bash.exe --noprofile --norc -eo pipefail {0}' || 'bash' }}
+        shell: ${{ matrix.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v4
+      - name: Setup MSYS2 (Windows)
+        uses: msys2/setup-msys2@v2
+        if: runner.os == 'Windows'
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
