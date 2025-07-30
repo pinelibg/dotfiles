@@ -8,48 +8,46 @@ on:
   pull_request:
   workflow_dispatch:
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   test-zsh:
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: ${{ matrix.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup-chezmoi
+        with:
+          msys2-packages: zsh
       - name: Install zsh (Linux)
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends zsh
         if: runner.os == 'Linux'
-      - name: Run install.sh
-        run: ./install.sh
-        env:
-          GH_TOKEN: ${{ github.token }}
       - name: Test zsh
         run: zsh -i -c "exit 0"
   test-neovim:
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: ${{ matrix.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-      - name: Run install.sh
-        run: ./install.sh
-        env:
-          GH_TOKEN: ${{ github.token }}
-      - name: Setup aqua
-        run: |
-          echo "${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua/bin" >> "${GITHUB_PATH}"
-          echo "AQUA_GLOBAL_CONFIG=${HOME}/.config/aquaproj-aqua/aqua.yaml" >> "${GITHUB_ENV}"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: ./.github/actions/setup-chezmoi
       - name: Test neovim configuration using nvim installed by aqua
-        run: nvim -c q
+        run: |
+          command -v nvim || (echo "nvim not found" && exit 1)
+          nvim --version
+          nvim -Es -V -c q

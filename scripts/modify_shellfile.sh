@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 if ! command -v print_template &> /dev/null; then
   echo "Error: print_template command not found. Please ensure that the template function is defined." >&2
   exit 1
 fi
-
-set -eu -o pipefail
 
 # Create temporary file to store input
 tempfile="$(mktemp)"

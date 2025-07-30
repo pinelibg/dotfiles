@@ -1,8 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 function print_template() {
   cat <<'EOF'
-{{ template "dot_bash_profile" -}}
+{{ template "dot_zshenv" -}}
 EOF
 }
 

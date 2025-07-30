@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+function print_template() {
+  cat <<'EOF'
+{{ template "dot_bash_profile" -}}
+EOF
+}
+
+. "${CHEZMOI_SOURCE_DIR}/scripts/modify_shellfile.sh"
