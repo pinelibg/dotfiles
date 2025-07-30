@@ -50,4 +50,4 @@ jobs:
         run: |
           command -v nvim || (echo "nvim not found" && exit 1)
           nvim --version
-          nvim -c q
+          nvim -Es -V -c q
