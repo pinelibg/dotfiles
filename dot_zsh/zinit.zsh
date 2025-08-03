@@ -23,8 +23,10 @@ DIRCOLORS_SOLARIZED_ZSH_THEME="256dark"
 zinit ice wait lucid; zinit light pinelibg/dircolors-solarized-zsh
 
 # theme
-[[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 zinit ice wait lucid; zinit light trystan2k/zsh-tab-title
 
 zinit ice has"aqua" wait lucid id-as"aqua-completion" as"program" atclone"aqua completion zsh | sed '/^$/d' > _aqua" atpull"%atclone" run-atpull
