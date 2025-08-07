@@ -53,3 +53,14 @@ mkcd() {
 	fi
 	mkdir -p "$@" && cd "${@:$#}" || return 1
 }
+
+# rsync aliases with progress
+# cpr: copy with progress
+cpr() {
+	rsync -ahh --partial --info=stats1,progress2 "$@"
+}
+
+# mvr: move with progress
+mvr() {
+	cpr --remove-source-files "$@"
+}
