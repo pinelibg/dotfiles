@@ -2,6 +2,8 @@
 # Documentation: https://starship.rs/config/
 "$schema" = 'https://starship.rs/config-schema.json'
 
+add_newline = false
+
 # Based on Pure Prompt preset
 
 format = """
@@ -50,6 +52,3 @@ style = "yellow"
 [python]
 format = "[$virtualenv]($style) "
 style = "bright-black"
-
-[line_break]
-disabled = true
