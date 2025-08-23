@@ -17,13 +17,27 @@ This repository contains my personal configuration files for shells and editors.
 
 ## Install
 
-Install [chezmoi](https://www.chezmoi.io/) and dotfiles with the single command:
+### Quick Install
+
+Install dotfiles with a single command:
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply pinelibg
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "${HOME}/.local/bin" init --apply pinelibg
 ```
 
-Or you can run the following commands in the terminal.
+### Alternative Methods
+
+#### Using existing chezmoi
+
+If you already have chezmoi installed ([Install chezmoi](https://www.chezmoi.io/install/)):
+
+```sh
+chezmoi init --apply pinelibg
+```
+
+#### Manual setup
+
+Clone and run the setup script:
 
 ```sh
 git clone https://github.com/pinelibg/dotfiles.git ~/dotfiles
