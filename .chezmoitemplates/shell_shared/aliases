@@ -40,11 +40,6 @@ if command -v nvim &>/dev/null; then
 	alias vi='nvim'
 fi
 
-# chezmoi
-if command -v chezmoi &>/dev/null; then
-	alias cm='chezmoi'
-fi
-
 # mkcd: create a directory and cd into it
 mkcd() {
 	if [[ "$#" -eq 0 ]]; then
@@ -52,15 +47,4 @@ mkcd() {
 		return 1
 	fi
 	mkdir -p "$@" && cd "${@:$#}" || return 1
-}
-
-# rsync aliases with progress
-# cpr: copy with progress
-cpr() {
-	rsync -ahh --partial --info=stats1,progress2 "$@"
-}
-
-# mvr: move with progress
-mvr() {
-	cpr --remove-source-files "$@"
 }
