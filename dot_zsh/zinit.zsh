@@ -9,6 +9,9 @@ zinit ice wait lucid atload'
   bindkey "^N" history-substring-search-down'
 zinit light zsh-users/zsh-history-substring-search
 
+zinit ice wait lucid
+zinit light olets/zsh-abbr
+
 # ssh-agent
 zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent agent-forwarding on
