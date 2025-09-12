@@ -28,10 +28,11 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Global gitignore for maxOS
+# Global gitignore for macOS
 # https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
 # General
 .DS_Store
+__MACOSX/
 .AppleDouble
 .LSOverride
 
@@ -81,7 +82,12 @@ Temporary Items
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-*.code-workspace
+!.vscode/*.code-snippets
+!*.code-workspace
+
+# Built Visual Studio Code Extensions
+
+*.vsix
 
 # Direnv stuff
 .direnv
