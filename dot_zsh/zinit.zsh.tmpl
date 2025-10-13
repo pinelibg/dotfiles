@@ -13,9 +13,23 @@ zinit ice wait lucid
 zinit light olets/zsh-abbr
 
 # ssh-agent
+{{ if eq .chezmoi.os "linux" }}
+  {{- if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+    {{- /* WSL */ -}}
+zinit ice from"gh-r" wait lucid atload'eval $(./wsl2-ssh-agent)'
+zinit light mame/wsl2-ssh-agent
+  {{- else }}
+    {{- /* Regular Linux */ -}}
 zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 zinit ice wait lucid silent; zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
+  {{- end }}
+{{- else if eq .chezmoi.os "darwin" }}
+  {{- /* macOS */ -}}
+zstyle :omz:plugins:ssh-agent quiet yes
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zinit ice wait lucid silent; zinit snippet OMZ::plugins/ssh-agent/ssh-agent.plugin.zsh
+{{- end }}
 
 zinit ice wait lucid blockf; zinit light Aloxaf/fzf-tab
 
