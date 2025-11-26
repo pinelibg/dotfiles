@@ -37,7 +37,7 @@ zinit ice wait lucid blockf; zinit light rupa/z
 zinit ice wait lucid; zinit light mrjohannchang/fz.sh
 
 DIRCOLORS_SOLARIZED_ZSH_THEME="256dark"
-zinit ice wait lucid if'[[ -n "$commands[dircolors]" ]] || [[ -n "$commands[gdircolors]" ]]'; zinit light pinelibg/dircolors-solarized-zsh
+zinit ice wait lucid if'(( $+commands[dircolors] || $+commands[gdircolors] ))'; zinit light pinelibg/dircolors-solarized-zsh
 
 # theme
 zinit ice as"command" from"gh-r" \
