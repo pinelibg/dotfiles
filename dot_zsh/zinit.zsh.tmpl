@@ -1,3 +1,8 @@
+# Enable zsh profiling if ENABLE_ZSH_PROFILING is set
+if [[ -n "$ENABLE_ZSH_PROFILING" ]]; then
+  zmodload zsh/zprof
+fi
+
 zinit ice wait lucid blockf; zinit light zsh-users/zsh-completions
 zinit ice wait'!0z' lucid atinit"zicompinit; zicdreplay"; zinit light zdharma-continuum/fast-syntax-highlighting
 
@@ -53,3 +58,8 @@ zinit ice has"gh" wait lucid id-as"gh-cli-comp" as"program" atclone"gh completio
 zinit light zdharma-continuum/null
 
 [[ -f ~/.zsh/zinit.zsh.local ]] && source ~/.zsh/zinit.zsh.local
+
+# Show profiling results if enabled
+if [[ -n "$ENABLE_ZSH_PROFILING" ]]; then
+  zprof
+fi
