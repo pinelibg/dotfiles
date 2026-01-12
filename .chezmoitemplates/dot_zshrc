@@ -1,3 +1,8 @@
+# Enable zsh profiling if ENABLE_ZSH_PROFILING is set
+if [[ -n "$ENABLE_ZSH_PROFILING" ]]; then
+  zmodload zsh/zprof
+fi
+
 umask 022
 
 {{ template "shell_setup_aqua" }}
@@ -29,3 +34,8 @@ done
 unset f
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# Show profiling results if enabled
+if [[ -n "$ENABLE_ZSH_PROFILING" ]]; then
+  zprof
+fi
