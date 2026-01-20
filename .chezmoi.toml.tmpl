@@ -1,2 +1,5 @@
+{{- if eq .chezmoi.os "windows" }}
 [interpreters.sh]
-    command = "bash"
+    command = "C:/Program Files/Git/usr/bin/bash.exe"
+    args = ["--login", "--norc"]
+{{- end }}
