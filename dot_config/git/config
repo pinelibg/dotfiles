@@ -1,6 +1,12 @@
 [core]
 	pager = delta
 
+[pull]
+	rebase = true
+
+[rebase]
+	autostash = true
+
 [interactive]
 	diffFilter = delta --color-only
 
