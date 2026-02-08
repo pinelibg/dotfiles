@@ -12,4 +12,5 @@ packages:
   - name: sharkdp/bat@v0.26.1
   - name: sharkdp/fd@v10.3.0
   - name: neovim/neovim@v0.11.6
+  - name: zellij-org/zellij@v0.43.1
   - import: local.yaml

@@ -7,6 +7,8 @@ umask 022
 
 {{ template "shell_setup_aqua" }}
 
+{{ template "shell_zellij_ssh" }}
+
 if [[ -f ~/.no_zinit ]]; then
 	:
 else
