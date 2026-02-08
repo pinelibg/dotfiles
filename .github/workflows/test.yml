@@ -14,6 +14,8 @@ jobs:
     defaults:
       run:
         shell: ${{ matrix.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
+    env:
+      TERM: xterm-256color
     strategy:
       fail-fast: false
       matrix:
