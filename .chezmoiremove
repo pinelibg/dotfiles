@@ -1,2 +1,8 @@
 .zsh/p10k.zsh
 .gitignore_global
+
+.bash_profile.sh
+.bashrc.sh
+.profile.sh
+.zshenv.sh
+.zshrc.sh
