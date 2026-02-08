@@ -14,6 +14,8 @@ jobs:
     defaults:
       run:
         shell: ${{ matrix.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
+    env:
+      TERM: xterm-256color
     strategy:
       fail-fast: false
       matrix:
@@ -31,7 +33,9 @@ jobs:
           sudo apt-get install -y --no-install-recommends zsh
         if: runner.os == 'Linux'
       - name: Test zsh
-        run: zsh -i -c "exit 0"
+        run: |
+          test -f ~/.zshrc || (echo "~/.zshrc not found" && exit 1)
+          zsh -i -c "exit 0"
   test-neovim:
     runs-on: ${{ matrix.os }}
     defaults:

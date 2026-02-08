@@ -2,4 +2,8 @@
 [interpreters.sh]
     command = "C:/Program Files/Git/usr/bin/bash.exe"
     args = ["--login", "--norc"]
+{{- else }}
+[interpreters.sh]
+    command = "bash"
+    args = ["--login", "--norc"]
 {{- end }}
