@@ -1,8 +1,7 @@
 # Auto-attach to zellij session on SSH login
 if [[ -n "$SSH_TTY" ]] && [[ -z "$ZELLIJ" ]]; then
 	if command -v zellij &>/dev/null; then
-		zellij attach --create default
-		exit
+		zellij attach --create default && exit
 	else
 		echo "zellij is not installed. Please run 'chezmoi apply' to install it."
 	fi
