@@ -12,7 +12,7 @@ fi
 unset_if_set() {
 	local key="$1"
 	if git config --global --get "${key}" &>/dev/null; then
-		git config --global --unset "${key}"
+		git config --global --unset-all "${key}"
 		echo "Unset ${key} from ~/.gitconfig"
 	fi
 }
