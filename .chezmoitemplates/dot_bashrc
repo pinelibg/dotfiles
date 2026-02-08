@@ -12,6 +12,10 @@ fi
 # Workaround for vscode remote development
 [[ ! -t 1 ]] && return
 
+{{ template "shell_setup_aqua" }}
+
+{{ template "shell_zellij_ssh" }}
+
 # Shell settings
 shopt -s checkwinsize
 shopt -s histappend
@@ -72,8 +76,6 @@ function set_prompt() {
 
 set_prompt
 unset -f set_prompt
-
-{{ template "shell_setup_aqua" }}
 
 {{ template "shell_shared/aliases" }}
 
