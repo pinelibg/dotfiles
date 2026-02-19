@@ -32,7 +32,7 @@ jobs:
         if: runner.os == 'Linux'
       - name: Test zsh
         run: |
-          test -f ~/.zshrc || (echo "~/.zshrc not found" && exit 1)
+          test -f ~/.zshrc || (echo ".zshrc not found" && exit 1)
           zsh -i -c "exit 0"
   test-neovim:
     runs-on: ${{ matrix.os }}
