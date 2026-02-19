@@ -10,6 +10,9 @@
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
   "automerge": false,
+  "mise": {
+    "managerFilePatterns": [ "dot_config/mise/config.toml" ]
+  },
   "packageRules": [
     {
       "matchUpdateTypes": [
