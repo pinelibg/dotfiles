@@ -5,7 +5,7 @@ fi
 
 umask 022
 
-{{ template "shell_setup_mise" "zsh" }}
+{{ template "shell_setup_mise" (dict "shell" "zsh" "os" .chezmoi.os) }}
 
 {{ template "shell_zellij_ssh" }}
 

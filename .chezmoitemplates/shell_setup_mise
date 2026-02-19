@@ -7,6 +7,10 @@ else
 	if ! command -v mise &>/dev/null; then
 		echo "mise is not installed. Please run 'chezmoi apply' to install it."
 	else
-		eval "$(mise activate {{ . }})"
+{{- if eq .os "windows" }}
+		export PATH="${LOCALAPPDATA}/mise/shims:${PATH}"
+{{- else }}
+		eval "$(mise activate {{ .shell }})"
+{{- end }}
 	fi
 fi
