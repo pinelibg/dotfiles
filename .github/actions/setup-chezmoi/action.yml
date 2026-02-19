@@ -21,6 +21,7 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ github.token }}
+        MISE_GITHUB_TOKEN: ${{ github.token }}
 
     - name: Setup mise environment (Unix)
       run: |
