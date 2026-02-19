@@ -5,6 +5,10 @@
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
+# Initialize mise
+$env:MISE_PWSH_CHPWD_WARNING=0 # Disable warning about changing directory for PowerShell 5
+(&mise activate pwsh) | Out-String | Invoke-Expression
+
 # Setup starship prompt
 Invoke-Expression (&starship init powershell)
 
@@ -14,11 +18,10 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 # Set fzf options
 $env:FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
 
-# History search with fzf using PSFzf
+# History search (PSFzf)
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
-# Tab completion with using PSFzf
-Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+# Tab completion (PSFzf)
 Set-PsFzfOption -TabExpansion
 
 # zoxide (z and zi)

@@ -10,7 +10,7 @@ foreach ($pkg in $wingetPackages) {
         Write-Host "$($pkg.Name) is already installed."
     } else {
         Write-Host "Installing $($pkg.Name) via winget..."
-        winget install --disable-interactivity --accept-source-agreements --accept-package-agreements --id $pkg.Id
+        winget install --disable-interactivity --accept-source-agreements --accept-package-agreements --exact --id $pkg.Id --source winget
     }
 }
 {{- end -}}
