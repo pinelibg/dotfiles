@@ -1,0 +1,12 @@
+if [[ -f ~/.no_mise ]]; then
+	:
+else
+	# mise: https://mise.jdx.dev
+	export PATH="${HOME}/.local/bin:${PATH}"
+
+	if ! command -v mise &>/dev/null; then
+		echo "mise is not installed. Please run 'chezmoi apply' to install it."
+	else
+		eval "$(mise activate {{ . }})"
+	fi
+fi

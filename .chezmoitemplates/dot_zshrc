@@ -5,7 +5,7 @@ fi
 
 umask 022
 
-{{ template "shell_setup_aqua" }}
+{{ template "shell_setup_mise" "zsh" }}
 
 {{ template "shell_zellij_ssh" }}
 
