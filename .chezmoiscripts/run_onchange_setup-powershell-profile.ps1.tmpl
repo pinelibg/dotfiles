@@ -1,0 +1,32 @@
+{{- if eq .chezmoi.os "windows" -}}
+
+$chezmoiProfilePath = Join-Path $env:USERPROFILE ".config\powershell\Microsoft.PowerShell_profile.ps1"
+
+$myDocuments = [Environment]::GetFolderPath('MyDocuments')
+
+$profilePaths = @(
+    # pwsh (PowerShell 7+)
+    (Join-Path $myDocuments "PowerShell\Microsoft.PowerShell_profile.ps1"),
+    # Windows PowerShell 5.x
+    (Join-Path $myDocuments "WindowsPowerShell\Microsoft.PowerShell_profile.ps1")
+)
+
+foreach ($profilePath in $profilePaths) {
+    $profileDir = Split-Path -Parent $profilePath
+
+    if (-not (Test-Path $profileDir)) {
+        New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
+    }
+
+    if (Test-Path $profilePath) {
+        $item = Get-Item $profilePath
+        if ($item.LinkType -eq "SymbolicLink" -and $item.Target -eq $chezmoiProfilePath) {
+            continue
+        }
+        Remove-Item $profilePath -Force
+    }
+
+    New-Item -ItemType SymbolicLink -Path $profilePath -Target $chezmoiProfilePath | Out-Null
+    Write-Host "Created symlink: $profilePath -> $chezmoiProfilePath"
+}
+{{- end -}}

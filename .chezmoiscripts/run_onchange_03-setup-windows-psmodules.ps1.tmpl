@@ -1,0 +1,16 @@
+{{- if eq .chezmoi.os "windows" -}}
+
+$psModules = @(
+    @{ Name = "PSReadLine"; Repository = "PSGallery" },
+    @{ Name = "PSFzf";     Repository = "PSGallery" }
+)
+
+foreach ($mod in $psModules) {
+    if (Get-Module -ListAvailable -Name $mod.Name) {
+        Write-Host "$($mod.Name) is already installed."
+    } else {
+        Write-Host "Installing $($mod.Name) from $($mod.Repository)..."
+        Install-Module -Name $mod.Name -Scope CurrentUser -Force -Repository $mod.Repository
+    }
+}
+{{- end -}}
