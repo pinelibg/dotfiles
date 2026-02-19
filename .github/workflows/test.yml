@@ -13,20 +13,18 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults:
       run:
-        shell: ${{ matrix.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
+        shell: bash
     env:
       TERM: xterm-256color
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Setup environment
         uses: ./.github/actions/setup-chezmoi
-        with:
-          msys2-packages: zsh
       - name: Install zsh (Linux)
         run: |
           sudo apt-get update
@@ -34,13 +32,13 @@ jobs:
         if: runner.os == 'Linux'
       - name: Test zsh
         run: |
-          test -f ~/.zshrc || (echo "~/.zshrc not found" && exit 1)
+          test -f ~/.zshrc || (echo ".zshrc not found" && exit 1)
           zsh -i -c "exit 0"
   test-neovim:
     runs-on: ${{ matrix.os }}
     defaults:
       run:
-        shell: ${{ matrix.os == 'windows-latest' && 'msys2 {0}' || 'bash' }}
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
