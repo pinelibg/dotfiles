@@ -22,6 +22,12 @@ runs:
         path-type: inherit
       if: runner.os == 'Windows'
 
+    - name: Setup Path for WinGet (Windows)
+      run: |
+        echo "${LOCALAPPDATA}\\Microsoft\\WinGet\\Links" >> "${GITHUB_PATH}"
+      shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
+      if: runner.os == 'Windows'
+
     - name: Setup Node.js
       uses: actions/setup-node@v6
       with:
@@ -35,6 +41,6 @@ runs:
 
     - name: Setup mise environment
       run: |
-        echo "${LOCALAPPDATA}\\Microsoft\\WinGet\\Links" >> "${GITHUB_PATH}"
+        echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
         echo "${HOME}/.local/share/mise/shims" >> "${GITHUB_PATH}"
       shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
