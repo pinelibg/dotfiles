@@ -35,6 +35,6 @@ runs:
 
     - name: Setup mise environment
       run: |
-        echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
+        echo "${LOCALAPPDATA}\\Microsoft\\WinGet\\Links" >> "${GITHUB_PATH}"
         echo "${HOME}/.local/share/mise/shims" >> "${GITHUB_PATH}"
       shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
