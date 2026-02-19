@@ -4,9 +4,7 @@
     "config:recommended",
     ":timezone(Asia/Tokyo)",
     ":semanticPrefixFix",
-    "schedule:weekly",
-    "github>aquaproj/aqua-renovate-config#2.10.0",
-    "github>aquaproj/aqua-renovate-config:installer-script#2.10.0(\\.chezmoitemplates/dot_zshrc)"
+    "schedule:weekly"
   ],
   "platformAutomerge": true,
   "prConcurrentLimit": 0,

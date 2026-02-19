@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# mise config.toml hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+
+set -euo pipefail
+
+export PATH="${HOME}/.local/bin:${PATH}"
+
+echo "Installing global CLI tools using mise..."
+mise install

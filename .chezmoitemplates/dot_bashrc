@@ -12,7 +12,7 @@ fi
 # Workaround for vscode remote development
 [[ ! -t 1 ]] && return
 
-{{ template "shell_setup_aqua" }}
+{{ template "shell_setup_mise" "bash" }}
 
 {{ template "shell_zellij_ssh" }}
 
