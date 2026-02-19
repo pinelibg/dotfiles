@@ -7,7 +7,7 @@ if command -v mise &>/dev/null; then
 {{ if eq .chezmoi.os "windows" -}}
 else
     echo "Installing mise via winget..."
-    winget install jdx.mise
+    winget install --disable-interactivity --accept-source-agreements --accept-package-agreements --id jdx.mise
 {{ else -}}
 else
     echo "Installing mise..."
