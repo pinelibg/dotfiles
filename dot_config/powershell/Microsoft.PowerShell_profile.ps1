@@ -22,6 +22,7 @@ $env:FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
 # Tab completion (PSFzf)
+Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 Set-PsFzfOption -TabExpansion
 
 # zoxide (z and zi)
