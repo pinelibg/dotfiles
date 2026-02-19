@@ -11,6 +11,6 @@ else
 {{ else -}}
 else
     echo "Installing mise..."
-    curl https://mise.run | sh
+    curl -fsS --proto '=https' --tlsv1.2 https://mise.run | sh
 {{ end -}}
 fi
