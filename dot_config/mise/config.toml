@@ -9,7 +9,7 @@ gh = "2.86.0"
 neovim = "0.11.6"
 ripgrep = "15.1.0"
 usage = "2.18.0"
-zellij = "0.43.1"
+zellij = { version = "0.43.1", os = ["darwin", "linux"] }
 
 [settings]
 idiomatic_version_file_enable_tools = []
