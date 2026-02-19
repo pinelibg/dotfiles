@@ -13,7 +13,13 @@ $env:MISE_PWSH_CHPWD_WARNING=0 # Disable warning about changing directory for Po
 Invoke-Expression (&starship init powershell)
 
 # List history by default (Toggle by F2 key)
-Set-PSReadLineOption -PredictionViewStyle ListView
+# Only if the -PredictionViewStyle option is available
+if (Get-Command Set-PSReadLineOption -ErrorAction SilentlyContinue) {
+    $options = Get-Command Set-PSReadLineOption | Select-Object -ExpandProperty Parameters
+    if ($options.ContainsKey('PredictionViewStyle')) {
+        Set-PSReadLineOption -PredictionViewStyle ListView
+    }
+}
 
 # Set fzf options
 $env:FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
@@ -22,8 +28,10 @@ $env:FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
 # Tab completion (PSFzf)
-Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
-Set-PsFzfOption -TabExpansion
+if ($PSVersionTable.PSVersion.Major -ge 6) {
+    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+    Set-PsFzfOption -TabExpansion
+}
 
 # zoxide (z and zi)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
