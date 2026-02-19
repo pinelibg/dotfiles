@@ -44,3 +44,9 @@ runs:
         echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
         echo "${HOME}/.local/share/mise/shims" >> "${GITHUB_PATH}"
       shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
+
+    - name: Setup mise environment (Windows)
+      run: |
+        echo "${LOCALAPPDATA}\\mise\\shims" >> "${GITHUB_PATH}"
+      shell: msys2 {0}
+      if: runner.os == 'Windows'
