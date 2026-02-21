@@ -2,6 +2,9 @@
 [interpreters.sh]
     command = "C:/Program Files/Git/usr/bin/bash.exe"
     args = ["--login", "--norc"]
+[interpreters.ps1]
+    command = "pwsh.exe"
+    args = ["-NoLogo", "-File"]
 {{- else }}
 [interpreters.sh]
     command = "bash"
