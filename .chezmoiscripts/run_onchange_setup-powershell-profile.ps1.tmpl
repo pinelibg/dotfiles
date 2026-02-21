@@ -26,7 +26,12 @@ foreach ($profilePath in $profilePaths) {
         Remove-Item $profilePath -Force
     }
 
-    New-Item -ItemType SymbolicLink -Path $profilePath -Target $chezmoiProfilePath | Out-Null
-    Write-Host "Created symlink: $profilePath -> $chezmoiProfilePath"
+    try {
+        New-Item -ItemType SymbolicLink -Path $profilePath -Target $chezmoiProfilePath -ErrorAction Stop | Out-Null
+        Write-Host "Created symlink: $profilePath -> $chezmoiProfilePath"
+    } catch {
+        Write-Error "Failed to create symlink: $profilePath -> $chezmoiProfilePath`n$_"
+        exit 1
+    }
 }
 {{- end -}}
