@@ -2,6 +2,13 @@
 
 $chezmoiProfilePath = Join-Path $env:USERPROFILE ".config\powershell\Microsoft.PowerShell_profile.ps1"
 
+$devModeKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock"
+$devModeValue = (Get-ItemProperty -Path $devModeKey -ErrorAction SilentlyContinue).AllowDevelopmentWithoutDevLicense
+if ($devModeValue -ne 1) {
+    Write-Error "Developer Mode is not enabled. Enable it in Settings > System > For developers, then re-run chezmoi apply."
+    exit 1
+}
+
 $myDocuments = [Environment]::GetFolderPath('MyDocuments')
 
 $profilePaths = @(
