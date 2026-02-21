@@ -9,10 +9,11 @@ This repository contains my personal configuration files for shells and editors.
 ## Features
 
 - uses [chezmoi](https://www.chezmoi.io/) to manage dotfiles
-- runs on Linux and macOS
+- runs on Linux, macOS and Windows
 - contains settings for
   - Bash (shell)
   - Zsh (shell)
+  - PowerShell (shell)
   - Neovim (editor)
 
 ## Install

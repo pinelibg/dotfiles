@@ -1,0 +1,17 @@
+{{- if eq .chezmoi.os "windows" -}}
+
+$wingetPackages = @(
+    @{ Id = "Starship.Starship"; Name = "starship" },
+    @{ Id = "junegunn.fzf";     Name = "fzf" },
+    @{ Id = "ajeetdsouza.zoxide"; Name = "zoxide" }
+)
+
+foreach ($pkg in $wingetPackages) {
+    if (winget list --exact --id $pkg.Id --disable-interactivity | Select-String $pkg.Id) {
+        Write-Host "$($pkg.Name) is already installed."
+    } else {
+        Write-Host "Installing $($pkg.Name) via winget..."
+        winget install --disable-interactivity --accept-source-agreements --accept-package-agreements --exact --id $pkg.Id --source winget
+    }
+}
+{{- end -}}

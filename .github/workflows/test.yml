@@ -53,3 +53,17 @@ jobs:
           command -v nvim || (echo "nvim not found" && exit 1)
           nvim --version
           nvim -Es -V -c q
+  test-powershell:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Setup environment
+        uses: ./.github/actions/setup-chezmoi
+      - name: Test PowerShell profile
+        run: |
+          if (-not (Test-Path $PROFILE)) { Write-Error "Profile not found: $PROFILE"; exit 1 }
+          Write-Host "PowerShell profile verified: $PROFILE"

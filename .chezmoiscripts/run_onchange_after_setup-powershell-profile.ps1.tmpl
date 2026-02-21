@@ -1,0 +1,44 @@
+{{- if eq .chezmoi.os "windows" -}}
+
+$chezmoiProfilePath = Join-Path $env:USERPROFILE ".config\powershell\Microsoft.PowerShell_profile.ps1"
+
+$devModeKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock"
+$devModeValue = (Get-ItemProperty -Path $devModeKey -ErrorAction SilentlyContinue).AllowDevelopmentWithoutDevLicense
+if ($devModeValue -ne 1) {
+    Write-Error "Developer Mode is not enabled. Enable it in Settings > System > For developers, then re-run chezmoi apply."
+    exit 1
+}
+
+$myDocuments = [Environment]::GetFolderPath('MyDocuments')
+
+$profilePaths = @(
+    # pwsh (PowerShell 7+)
+    (Join-Path $myDocuments "PowerShell\Microsoft.PowerShell_profile.ps1"),
+    # Windows PowerShell 5.x
+    (Join-Path $myDocuments "WindowsPowerShell\Microsoft.PowerShell_profile.ps1")
+)
+
+foreach ($profilePath in $profilePaths) {
+    $profileDir = Split-Path -Parent $profilePath
+
+    if (-not (Test-Path $profileDir)) {
+        New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
+    }
+
+    if (Test-Path $profilePath) {
+        $item = Get-Item $profilePath
+        if ($item.LinkType -eq "SymbolicLink" -and $item.Target -eq $chezmoiProfilePath) {
+            continue
+        }
+        Remove-Item $profilePath -Force
+    }
+
+    try {
+        New-Item -ItemType SymbolicLink -Path $profilePath -Target $chezmoiProfilePath -ErrorAction Stop | Out-Null
+        Write-Host "Created symlink: $profilePath -> $chezmoiProfilePath"
+    } catch {
+        Write-Error "Failed to create symlink: $profilePath -> $chezmoiProfilePath`n$_"
+        exit 1
+    }
+}
+{{- end -}}
