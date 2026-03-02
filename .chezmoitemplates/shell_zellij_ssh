@@ -1,5 +1,5 @@
 # Auto-attach to zellij session on SSH login
-if [[ -n "$SSH_TTY" ]] && [[ -z "$ZELLIJ" ]]; then
+if [[ -n "$SSH_TTY" ]] && [[ "$ZED_TERM" != "true" ]] && [[ -z "$ZELLIJ" ]]; then
 	if command -v zellij &>/dev/null; then
 		zellij attach --create default && exit
 	else
