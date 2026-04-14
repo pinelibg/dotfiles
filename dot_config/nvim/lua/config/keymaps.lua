@@ -1,0 +1,5 @@
+-- Exit insert mode shortcuts (including Japanese IME variants)
+vim.keymap.set("i", "jj",   "<Esc>", { silent = true })
+vim.keymap.set("i", "っｊ", "<Esc>", { silent = true })
+vim.keymap.set("i", "っj",  "<Esc>", { silent = true })
+vim.keymap.set("i", "ｊｊ", "<Esc>", { silent = true })
