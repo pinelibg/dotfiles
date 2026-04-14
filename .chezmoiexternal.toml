@@ -5,5 +5,5 @@
 [".local/share/nvim/lazy/lazy.nvim"]
   type = "git-repo"
   url = "https://github.com/folke/lazy.nvim.git"
-  branch = "stable"
+  clone.args = ["--filter=blob:none", "--branch", "stable"]
   refreshPeriod = "168h"
