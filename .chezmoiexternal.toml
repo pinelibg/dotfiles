@@ -6,4 +6,3 @@
   type = "git-repo"
   url = "https://github.com/folke/lazy.nvim.git"
   clone.args = ["--filter=blob:none", "--branch", "stable"]
-  refreshPeriod = "168h"
