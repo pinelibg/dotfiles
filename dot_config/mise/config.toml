@@ -8,7 +8,7 @@ fzf = "0.72.0"
 gh = "2.92.0"
 "aqua:neovim/neovim" = "0.12.2"
 ripgrep = "15.1.0"
-usage = "2.18.2"
+usage = "3.3.0"
 zellij = { version = "0.44.2", os = ["darwin", "linux"] }
 
 [settings]
