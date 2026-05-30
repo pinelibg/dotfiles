@@ -35,3 +35,7 @@ if ($PSVersionTable.PSVersion.Major -ge 6) {
 
 # zoxide (z and zi)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+# Load machine-local settings if present
+$localProfile = Join-Path (Split-Path $PROFILE) "profile.local.ps1"
+if (Test-Path $localProfile) { . $localProfile }
