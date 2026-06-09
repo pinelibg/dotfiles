@@ -10,7 +10,11 @@ else
 {{- if eq .os "windows" }}
 		export PATH="${LOCALAPPDATA}/mise/shims:${PATH}"
 {{- else }}
-		eval "$(mise activate {{ .shell }})"
+		if [[ -f ~/.mise_shim ]]; then
+			eval "$(mise activate --shims {{ .shell }})"
+		else
+			eval "$(mise activate {{ .shell }})"
+		fi
 {{- end }}
 	fi
 fi
