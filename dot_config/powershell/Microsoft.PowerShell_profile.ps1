@@ -12,15 +12,6 @@ $env:MISE_PWSH_CHPWD_WARNING=0 # Disable warning about changing directory for Po
 # Setup starship prompt
 Invoke-Expression (&starship init powershell)
 
-# List history by default (Toggle by F2 key)
-# Only if the -PredictionViewStyle option is available
-if (Get-Command Set-PSReadLineOption -ErrorAction SilentlyContinue) {
-    $options = Get-Command Set-PSReadLineOption | Select-Object -ExpandProperty Parameters
-    if ($options.ContainsKey('PredictionViewStyle')) {
-        Set-PSReadLineOption -PredictionViewStyle ListView
-    }
-}
-
 # Set fzf options
 $env:FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
 
