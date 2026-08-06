@@ -12,7 +12,7 @@ jobs:
   lint-shellcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Run shellcheck
         uses: reviewdog/action-shellcheck@4c07458293ac342d477251099501a718ae5ef86e # v1
         with:
@@ -27,7 +27,7 @@ jobs:
   lint-vint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Run vint
         uses: reviewdog/action-vint@7d853f6a655c6940837973e80c2b63fce67c9c8e # v1
         with:
@@ -36,7 +36,7 @@ jobs:
   lint-actionlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Run actionlint
         uses: reviewdog/action-actionlint@50842263c20a7c46bd0065b9e624d3c569db061e # v1
         with:
@@ -45,7 +45,7 @@ jobs:
   lint-tomlcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Install tomlcheck
         run: |
           curl -L https://github.com/vmchale/tomlcheck/releases/download/0.1.0.38/tomlcheck-x86_64-unkown-linux-gnu -o /usr/local/bin/tomlcheck
