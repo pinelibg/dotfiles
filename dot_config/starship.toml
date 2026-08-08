@@ -15,7 +15,6 @@ $git_state\
 $git_status\
 $cmd_duration\
 $line_break\
-$python\
 $character"""
 
 [directory]
@@ -49,6 +48,3 @@ style = "bright-black"
 format = "[$duration]($style) "
 style = "yellow"
 
-[python]
-format = "[$virtualenv]($style) "
-style = "bright-black"
