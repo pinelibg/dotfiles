@@ -9,7 +9,7 @@ gh = "2.97.0"
 "aqua:neovim/neovim" = "0.12.5"
 ripgrep = "15.2.0"
 usage = "5.1.0"
-zellij = { version = "0.44.3", os = ["darwin", "linux"] }
+zellij = { version = "0.45.0", os = ["darwin", "linux"] }
 
 [settings]
 idiomatic_version_file_enable_tools = []
