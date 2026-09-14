@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Run vint
-        uses: reviewdog/action-vint@7d853f6a655c6940837973e80c2b63fce67c9c8e # v1
+        uses: reviewdog/action-vint@101f3104da66cf84d81438957b83e07c530c8ce3 # v1
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
