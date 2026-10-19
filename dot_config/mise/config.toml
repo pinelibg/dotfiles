@@ -6,7 +6,7 @@ eza = "0.23.5"
 fd = "10.5.0"
 fzf = "0.74.5"
 gh = "2.102.0"
-neovim = "0.12.5"
+neovim = "0.12.6"
 ripgrep = "15.2.0"
 usage = "6.12.1"
 zellij = { version = "0.45.1", os = ["darwin", "linux"] }
