@@ -8,7 +8,7 @@ fzf = "0.75.0"
 gh = "2.103.3"
 neovim = "0.12.6"
 ripgrep = "15.2.0"
-usage = "7.1.2"
+usage = "7.3.0"
 zellij = { version = "0.45.1", os = ["darwin", "linux"] }
 
 [settings]
